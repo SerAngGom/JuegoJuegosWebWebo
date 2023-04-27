@@ -1,4 +1,4 @@
-let startSc = {
+let startScreen = {
     preload: loadStartScreen,
     create: createStartScreen,
 };
