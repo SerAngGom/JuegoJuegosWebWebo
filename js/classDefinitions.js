@@ -2,28 +2,21 @@
 //--------TYPIST----------------------------------------------
 //————————————————————————————————————————————————————————————
 
-class Typist {
+class Goose {
     constructor() {
         this.x = GAME_AREA_WIDTH / 2;
-        this.y = GAME_AREA_HEIGHT - SPRITE_FROG_HEIGHT / 2 - 30; // 15 pixels of margin
-        this.type = 'typist';
+        this.y = GAME_AREA_HEIGHT - SPRITE_GOOSE_HEIGHT / 2 - 30; // 15 pixels of margin
+        this.type = 'goose';
         this.sprite;
     }
 
-    configTypistSprite() {
+    configgooseSprite() {
         this.sprite.anchor.setTo(0.5);
-
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
-    refocusTypist(owp) {
-        let typistToOWPX = owp.sprite.x - this.sprite.x;
-        let typistToOWPY = this.sprite.y - owp.sprite.y;
-        this.sprite.angle = Math.atan2(typistToOWPX, typistToOWPY) * RADIANS_TO_DEGREES;
-    }
-
     resetTypist() {
-        this.sprite.angle = 0;
+
     }
 
     move(x) {
@@ -41,6 +34,18 @@ class Typist {
 //————————————————————————————————————————————————————————————
 //--------ENEMIES---------------------------------------------
 //————————————————————————————————————————————————————————————
+class Wood{
+    constructor(x){
+        this.x= 50;
+        this.y= 50; //constante
+        this.type= 'wood';
+        this.sprite;
+    }
+    configgooseSprite() {
+        this.sprite.anchor.setTo(1);
+    }
+
+}
 
 class Enemy {
     constructor(x, y, type, created = false) {
@@ -57,10 +62,10 @@ class Enemy {
 
         this.timer = null;
 
-        if (type == 'beetle') {
+        if (type == 'bread') {
             this.timer = game.time.events.loop(REPLICATION_RATE, this.replicate, this);
         }
-        else if (type == 'moth') {
+        else if (type == 'catfish') {
             this.timer = game.time.events.loop(FAN_GENERATION_RATE, this.fanGenerate, this);
         }
 
@@ -74,10 +79,6 @@ class Enemy {
 
         this.sprite.body.collideWorldBounds = true;
         this.sprite.body.bounce.set(1);
-
-        this.text = game.add.text(this.x, this.y + WORD_OFFSET, this.word, { font: 'Source Sans Pro', fontSize: '20px' } );
-
-        this.refocusOWP();
     }
 
     getSpeed() {

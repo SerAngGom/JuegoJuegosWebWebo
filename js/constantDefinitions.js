@@ -3,8 +3,8 @@ const GAME_AREA_WIDTH = 800;
 const GAME_AREA_HEIGHT = 500;
 
 // typist sprite size ————————————————————————————————————————
-const SPRITE_FROG_WIDTH = 90;
-const SPRITE_FROG_HEIGHT= 92;
+const SPRITE_GOOSE_WIDTH = 90;
+const SPRITE_GOOSE_HEIGHT= 92;
 
 // enemy sprtie sizes ————————————————————————————————————————
 const SPRITE_FLY_WIDTH = 24;
