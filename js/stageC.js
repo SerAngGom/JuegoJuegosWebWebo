@@ -1,7 +1,7 @@
 let stageC = {
     preload: loadStageC,
     create: createStageC,
-    //update: updateStageC
+    update: updateStageC
 };
 
 function loadStageC() {
