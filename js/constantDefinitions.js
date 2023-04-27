@@ -44,4 +44,3 @@ const TIMELAPSE = Phaser.Timer.SECOND;
 
 
 // create the game ————————————————————————————————————————————
-let game = new Phaser.Game(GAME_AREA_WIDTH, GAME_AREA_HEIGHT, Phaser.CANVAS, 'gameArea');
