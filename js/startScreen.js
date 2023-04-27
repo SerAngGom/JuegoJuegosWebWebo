@@ -14,7 +14,7 @@ function createStartScreen() {
     //initiate assets on the game screen: set their locations, scales, rotations, tweens, etc
 
     // add the background image to the screen
-    game.add.image(-1, -1, "bg");
+    game.add.image(0, 0, "bg");
 
   
 }
