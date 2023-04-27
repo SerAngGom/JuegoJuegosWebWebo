@@ -2,6 +2,8 @@ let startScreen = {
     preload: loadStartScreen,
     create: createStartScreen,
 };
+
+let game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 //Variable definitions: assets (sounds, sprites, etc)
 
 function loadStartScreen() {
