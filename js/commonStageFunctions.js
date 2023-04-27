@@ -24,25 +24,13 @@ function loadStages(s) {
 
 function initiateVariablesStart() {
     game.world.removeAll();
-
-    typedLetters = 0;
-    correctLetters = 0;
-
-    deactivatedOWPs = 0;
-
-    wave = 1;
-
     death = false;
-
     game.time.reset();
 }
 
 function initiateVariables() {
 
     createdInsects = 0;
-
-    wordsUsed = new Array();
-    lettersUsed = new Array();
 
     owps = new Phaser.ArraySet();
     bubbles = new Phaser.ArraySet();
@@ -51,15 +39,14 @@ function initiateVariables() {
 function readWaveInfo(w) {
     console.log('Loading wave', w, 'of stage',stage, '.');
 
-    numberFlies = levelData[w - 1].owpsTypes.flies;
-    numberBeetles = levelData[w - 1].owpsTypes.beetles;
-    numberMoths = levelData[w - 1].owpsTypes.moths;
-    totalInsects = numberFlies + numberBeetles + numberMoths;
+    numberpan = 0;
+    numbergrape = 0;
+    numbercatfish = 0;
 
-    waveSpeed = levelData[w - 1].owpsSpeed;
-    waveAppearanceRate = levelData[w - 1].appearanceRate;
+    waveSpeed = 0; 
+    waveAppearanceRate = 0;
 
-    waveLimit = levelData.length;
+    waveLimit = 0;
 }
 
 function playMusic() {
