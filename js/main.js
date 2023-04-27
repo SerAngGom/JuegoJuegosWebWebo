@@ -1,5 +1,6 @@
 // the game is created in constantDefinitions.js
-let game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
+let game = new Phaser.Game(800, 500, Phaser.AUTO, 'game');
+
 // entry point ———————————————————————————————————————————————
 window.onload = startGame;
 

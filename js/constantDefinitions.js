@@ -41,7 +41,3 @@ const TITLE_OFFSET = 10;
 const BUTTON_OFFSET_Y = 100; // gap between the buttons in the start screen
 const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz';
 const TIMELAPSE = Phaser.Timer.SECOND;
-
-
-// create the game ————————————————————————————————————————————
-let game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
