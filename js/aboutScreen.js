@@ -5,7 +5,7 @@ let aboutScreen = {
 
 function preloadAbout() {
     game.load.image('bg', 'assets/imgs/background.png');
-
+}
 function createAbout() {
     game.world.removeAll();
 
@@ -117,5 +117,4 @@ function showCredits() {
 function clickBackToStart() {
     btnStart.inputEnabled = false;
     game.state.start('startScreen');
-}
 }
