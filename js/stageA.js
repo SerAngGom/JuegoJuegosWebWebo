@@ -17,8 +17,7 @@ function createStageA() {
     game.add.image(-1, -1, "bg");
 
     // load the json files
-    dictionary = JSON.parse(this.game.cache.getText('dictionary'));
-    levelData = JSON.parse(this.game.cache.getText('wavesA'));
+
 
     // load info for the wave and play music
     initiateVariables();
@@ -30,8 +29,8 @@ function createStageA() {
     game.input.keyboard.onDownCallback = readKeyboard;
 
     // create the typist's sprite and configure it
-    typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
-    typist.configTypistSprite();
+    //typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/); para cuando movamos con el ratón.
+    //typist.configTypistSprite(); cosas de typiost que hay que mirar
 
     // timer to create the OWPs
     game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
