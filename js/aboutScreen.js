@@ -5,11 +5,6 @@ let aboutScreen = {
 
 function preloadAbout() {
     game.load.image('bg', 'assets/imgs/background.png');
-    game.load.image('frog', 'assets/imgs/frog.png');
-    game.load.image('back', 'assets/imgs/return.png');
-    game.load.image('credits', 'assets/imgs/credits.png');
-    game.load.image('about', 'assets/imgs/about.png');
-}
 
 function createAbout() {
     game.world.removeAll();
@@ -17,7 +12,7 @@ function createAbout() {
     game.add.image(-1, -1, "bg");
 
     //text describing the game (Ab-out)
-    let titleAb = 'BUBBLE FROG';
+    let titleAb = 'GOOSETAVOS BREAD RAGE';
     let style = {
         font: 'Source Sans Pro',
         fontWeight: '600',
@@ -27,10 +22,9 @@ function createAbout() {
     mainTitle.anchor.setTo(0.5, 0);
     mainTitle.position.setTo(GAME_AREA_WIDTH/2, 50);
 
-    let textAb = 'Welcome to the frog typing game.\n';
-    textAb += 'In this game you will play as this frog\n';
-    textAb += 'to practice speed at typing in English.\n';
-    textAb += 'Feed the frog to win!\n';
+    let textAb = 'This game is about learning not to\n';
+    textAb += 'feed bread to ducks.\n';
+
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',
@@ -41,8 +35,8 @@ function createAbout() {
     introduction.anchor.setTo(0.5, 0);
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
-    let imgFrog = game.add.image(GAME_AREA_WIDTH/2, 200, 'frog');
-    imgFrog.anchor.setTo(0.5, 0);
+    let imgDuck = game.add.image(GAME_AREA_WIDTH/2, 200, 'duck');
+    imgDuck.anchor.setTo(0.5, 0);
 
 
     //text and images explaining the game (A-bout T-utorial)
@@ -58,14 +52,7 @@ function createAbout() {
 
     let textAT = 'Type the words that appear on the screen\n';
     textAT += 'screen to eat the insects. On stage B, you\n';
-    textAT += 'can move your mouse to avoid being hit.\n';
-    textAT += '\n';
-    textAT += "Make sure to not get hit or you'll die, and\n";
-    textAT += 'be careful with the bigger ones: they will\n';
-    textAT += 'summon new enemies to attack you!\n';
-    textAT += '\n';
-    textAT += 'Each level will have waves that you will\n';
-    textAT += 'have to survive to continue playing.\n';
+  
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',
@@ -106,19 +93,7 @@ function showCredits() {
     let textAC = 'This game has been created by\n';
     textAC += '\n';
     textAC += 'ANDROMEDA TEAM\n';
-    textAC += 'Sergio Angulo Gómez\n';
-    textAC += 'Alex González Beltrán\n';
-    textAC += 'Marta Maestro Momparler\n';
-    textAC += '\n';
-    textAC += 'for the Design and Development\n';
-    textAC += 'of Web Games course.\n';
-    textAC += '\n';
-    textAC += 'All the art on this game has been\n';
-    textAC += 'created by @brgfx.\n';
-    textAC += '\n';
-    textAC += 'The animations have been made by\n';
-    textAC += 'Sergio Angulo Gómez.\n';
-
+ 
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',
@@ -142,4 +117,5 @@ function showCredits() {
 function clickBackToStart() {
     btnStart.inputEnabled = false;
     game.state.start('startScreen');
+}
 }
