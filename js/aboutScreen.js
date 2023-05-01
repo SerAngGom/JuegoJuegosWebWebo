@@ -50,8 +50,8 @@ function createAbout() {
     titleTutorial.anchor.setTo(0.5, 0);
     titleTutorial.position.setTo(GAME_AREA_WIDTH/2, 320);
 
-    let textAT = 'Type the words that appear on the screen\n';
-    textAT += 'screen to eat the insects. On stage B, you\n';
+    let textAT = 'Get to the right position to shoot the bread.\n';
+    textAT += 'Then, click or press space to shoot at it!\n';
   
     style = {
         font: 'Source Sans Pro',
@@ -92,7 +92,7 @@ function showCredits() {
 
     let textAC = 'This game has been created by\n';
     textAC += '\n';
-    textAC += 'ANDROMEDA TEAM\n';
+    textAC += 'TEAM WEBO\n';
  
     style = {
         font: 'Source Sans Pro',
