@@ -15,13 +15,12 @@ function loadStages() {
 
     //game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
     //game.load.audio('sndexplosion', 'assets/snds/hit.mp3');
-  
 }
 
 function create_wood(x){
     diff = 800/x
     for(i=0; i=x; i++){
-        game.add.wood(wood, diff);  
+        game.add.wood(wood, diff);
     }
-        
+
 }
