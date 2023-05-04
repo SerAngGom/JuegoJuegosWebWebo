@@ -54,13 +54,13 @@ function updateStageC() {
 
         // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
         if (cursors.left.isDown) {
-            goose.x += 2;//salto; 
+            goose.x -= 2;//salto; 
 
         }
     
         // Mueve el personaje hacia la derecha si se presiona la flecha derecha
         if (cursors.right.isDown) {
-            goose.x -= 2;
+            goose.x += 2;
             
         }
   //  checkCollision();
