@@ -30,11 +30,11 @@ class Goose {
 //--------WOOD STICKS------------------------------------------
 //————————————————————————————————————————————————————————————
 class Wood{
-    constructor(spritesheet){
+    constructor(image){
         this.x= 0;
         this.y= WOOD_Y; //constante
         this.type= 'wood';
-        this.sprite = spritesheet;
+        this.image = game.add.image("wood");
     }
     configWoodSprite() {
         this.sprite.anchor.setTo(1);

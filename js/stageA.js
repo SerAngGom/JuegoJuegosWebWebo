@@ -21,16 +21,15 @@ function loadStageA() {
 
 }
 
+
+
 function createStageA() {
 
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    let goose = game.add.image(450, 100, "goose");
-    let wood = game.add.image(100, 0, "wood");
-  
-    
-   
+    let goose = game.add.image(100, 350, "goose");
+    create_wood(8);    
 
     // load info for the wave and play music
     //initiateVariables();
@@ -48,4 +47,11 @@ function updateStageA() {
 
   //  checkCollision();
 // moveWords();
+}
+
+function create_wood(x){
+    diff = 800/x;
+    for(i=0; i<x+1; i++){
+        let wood = game.add.image(diff*i+100, 0, "wood");        
+    }  
 }
