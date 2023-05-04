@@ -15,17 +15,13 @@ class Goose {
         game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
-    resetTypist() {
-
-    }
-
     move(x) {
-        this.sprite.x = x;
-        this.x = this.sprite.x;
+        //this.sprite.x = x;
+        //this.x = this.sprite.x;
 
-        for (var i = 0; i < owps.list.length; i++) {
-            let owp = owps.list[i];
-            owp.refocusOWP();
+        //for (var i = 0; i < owps.list.length; i++) {
+       //     let owp = owps.list[i];
+        //    owp.refocusOWP();
         }
     }
 }
