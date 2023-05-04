@@ -22,25 +22,3 @@ function checkLetter(a) {
     } return activeOWP;
 }
 
-function nextLetterInOWP(a, owp) {
-    if (a == owp.word[activeLetter]) {
-        typist.refocusTypist(owp);
-        activeOWP = owp;
-        correctLetters++;
-        advanceLetter(owp);
-        return activeOWP;
-    }
-}
-
-function advanceLetter(owp) {
-    owp.deactivateLetter(activeLetter);
-    if (activeLetter < owp.word.length - 1) {
-        activeLetter++;
-    } else {
-        activeOWP.deleteText();
-        activeOWP = null;
-        activeLetter = 0;
-    }
-    shootBubble(owp);
-    return activeOWP;
-}
