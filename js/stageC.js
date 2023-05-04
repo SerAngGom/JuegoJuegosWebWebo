@@ -33,21 +33,13 @@ function createStageC() {
     // Crea el personaje y ajusta su escala y posición
     goose = game.add.image(500, 375, "goose");
 
-
+    estado = "derecha";
 
     // Habilita las teclas de flecha para el juego
     cursors = game.input.keyboard.createCursorKeys();
 
-    // load info for the wave and play music
-    //initiateVariables();
     //playMusic();
 
-    // for reading the keyboard
-    //cursors = game.input.keyboard.createCursorKeys();
-    //game.input.keyboard.onDownCallback = readKeyboard;
-    //Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
-
-    //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
 }
 
 function updateStageC() {
@@ -57,17 +49,18 @@ function updateStageC() {
         if (cursors.left.justDown) 
         {
             goose.x -= salto;
+            if (estado == "derecha") goose.scale.setTo(-1, 1);
+            estado = "izquierda";
         }
     
         // Mueve el personaje hacia la derecha si se presiona la flecha derecha
         else if (cursors.right.justDown) 
         {
             goose.x += salto;
+            if (estado == "izquierda") goose.scale.setTo(1, 1);
+            estado = "derecha";
         }
 
 
-
-
   //  checkCollision();
-// moveWords();
 }
