@@ -9,8 +9,12 @@ let stageA = {
 //————————————————————————————————————————————————————————————
 
 function loadStageA() {
+<<<<<<< Updated upstream
     loadStages();
  
+=======
+    //loadStages('A');
+>>>>>>> Stashed changes
 }
 
 function createStageA() {
@@ -31,12 +35,12 @@ function createStageA() {
     }
 
     // load info for the wave and play music
-    initiateVariables();
+    //initiateVariables();
     //playMusic();
 
     // for reading the keyboard
     cursors = game.input.keyboard.createCursorKeys();
-    game.input.keyboard.onDownCallback = readKeyboard;
+    //game.input.keyboard.onDownCallback = readKeyboard;
     Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
 
     //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
