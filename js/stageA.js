@@ -9,15 +9,26 @@ let stageA = {
 //————————————————————————————————————————————————————————————
 
 function loadStageA() {
-    loadStages('A');
+    loadStages();
+ 
 }
 
 function createStageA() {
+
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    // load the json files
-
+    let goose = game.add.image(450, 100, "goose");
+    let wood = game.add.image(100, WOOD_Y, "wood");
+  
+    
+    function create_wood(x){
+        diff = 800/x
+        for(i=0; i=x; i++){
+            game.add.wood(wood, diff);  
+        }
+            
+    }
 
     // load info for the wave and play music
     initiateVariables();

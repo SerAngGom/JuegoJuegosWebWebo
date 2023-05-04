@@ -7,7 +7,7 @@ class Goose {
         this.x = GAME_AREA_WIDTH / 2;
         this.y = GAME_AREA_HEIGHT - SPRITE_GOOSE_HEIGHT / 2 - 30; // 15 pixels of margin
         this.type = 'goose';
-        this.sprite;
+        this.sprite = 'goose';
     }
 
     configGooseSprite() {
@@ -30,11 +30,11 @@ class Goose {
 //--------WOOD STICKS------------------------------------------
 //————————————————————————————————————————————————————————————
 class Wood{
-    constructor(x){
-        this.x= 200;
-        this.y= 0; //constante
+    constructor(spritesheet){
+        this.x= 0;
+        this.y= WOOD_Y; //constante
         this.type= 'wood';
-        this.sprite;
+        this.sprite = spritesheet;
     }
     configWoodSprite() {
         this.sprite.anchor.setTo(1);

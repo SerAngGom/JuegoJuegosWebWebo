@@ -5,21 +5,17 @@
 function loadStages(s) {
     game.load.image('bg', 'assets/imgs/background.png');
 
-    game.load.image('frog', 'assets/imgs/frog.png');
-    game.load.image('bubble', 'assets/imgs/bubble.png');
+    game.load.image('goose', 'assets/imgs/goose.png');
+    game.load.image('wood', 'assets/imgs/palo.png');
+    game.load.image('bread', 'assets/imgs/pan.png');
+    game.load.image('foreground', 'assets/imgs/foreground.png');
+    game.load.image('cuerdaHaciaDer', 'assets/imgs/cuerdaHaciaDer.png');
+    game.load.image('cuerdaHaciaIzq', 'assets/imgs/cuerdaHaciaIzq.png');
+    game.load.image('catfish', 'assets/imgs/siluro.png');
 
-    game.load.spritesheet('fly', 'assets/imgs/fly.png', 40, 40);
-    game.load.spritesheet('beetle', 'assets/imgs/beetle.png', 65, 65);
-    game.load.spritesheet('moth', 'assets/imgs/moth.png', 130, 60);
-
-    game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
-    game.load.audio('sndexplosion', 'assets/snds/hit.mp3');
-    game.load.audio('sndbubble','assets/snds/bubble.mp3');
-
-    game.load.audio('frogs', 'assets/snds/frogs.mp3');
-
-    game.load.text('dictionary', 'assets/json/dictionary.json');
-    game.load.text('waves' + s, 'assets/json/stage' + s + '.json');
+    //game.load.spritesheet('explosion','assets/imgs/explosion.png', 125, 125);
+    //game.load.audio('sndexplosion', 'assets/snds/hit.mp3');
+  
 }
 
 function initiateVariablesStart() {
