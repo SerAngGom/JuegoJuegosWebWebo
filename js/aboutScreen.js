@@ -9,7 +9,7 @@ function preloadAbout() {
 function createAbout() {
     game.world.removeAll();
 
-    game.add.image(-1, -1, "bg");
+    game.add.image(0, 0, "bg");
 
     //text describing the game (Ab-out)
     let titleAb = 'GOOSETAVOS BREAD RAGE';

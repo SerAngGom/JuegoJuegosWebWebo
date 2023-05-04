@@ -26,11 +26,15 @@ function createStageA() {
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    let goose = game.add.image(450, 100, "goose");
-    let wood = game.add.image(100, 0, "wood");
-  
+    num = 8;
+    create_wood(num);
+
+    rand = randomNumber(1, num); 
+    diff = 700/num;
+    drop_bread(diff*rand+100);
     
-   
+
+    let goose = game.add.image(100, 350, "goose");
 
     // load info for the wave and play music
     //initiateVariables();
@@ -49,3 +53,23 @@ function updateStageA() {
   //  checkCollision();
 // moveWords();
 }
+
+function create_wood(x){
+    diff = 700/x;
+    for(i=0; i<x+1; i++){
+        let wood = game.add.image(diff*i+100, 0, "wood");        
+    }  
+}
+function drop_bread(x){
+    let bread = game.add.image(x, 100, "bread");
+    bread.anchor.setTo(0.5, 0.5);
+    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+
+    moveTo(bread, x, 500);
+    
+}
+function randomNumber(min, max) {
+    max += 1;
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
