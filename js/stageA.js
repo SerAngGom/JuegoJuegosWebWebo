@@ -29,7 +29,7 @@ function createStageA() {
     game.add.image( 0, 0, "bg");
 
     let goose = game.add.image(100, 350, "goose");
-    create_wood(6);    
+    create_wood(7);    
 
     // load info for the wave and play music
     //initiateVariables();
@@ -50,7 +50,7 @@ function updateStageA() {
 }
 
 function create_wood(x){
-    diff = 800/x;
+    diff = 700/x;
     for(i=0; i<x+1; i++){
         let wood = game.add.image(diff*i+100, 0, "wood");        
     }  
