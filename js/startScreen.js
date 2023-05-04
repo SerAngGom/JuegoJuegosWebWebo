@@ -18,28 +18,34 @@ function createStartScreen() {
     // add the background image to the screen
     game.add.image(0, 0, "bg");
 
-
-    let pato1 = game.add.image(0, 0, "patoA");
+    // Crea el botón de imagen
+    let facil = game.add.button(100, 200, 'patoA', actionOnClick, this, 2, 1, 0);
     
-    pato1.scale.setTo(0.75);
+    // Cambia la posición del botón
+    facil.anchor.setTo(0.5, 0.5);
+    facil.y = 100;
+    facil.x = 200;
+    facil.scale.setTo(0.75);
 
-    pato1.y = 100;
-    pato1.x = 200;
 
-    let pato2 = game.add.image(0, 0, "patoB");
+    // Crea el botón de imagen
+    let normal = game.add.button(100, 200, 'patoB', actionOnClick, this, 2, 1, 0);
     
-    pato2.scale.setTo(0.75);
+    // Cambia la posición del botón
+    normal.anchor.setTo(0.5, 0.5);
+    normal.y = 200;
+    normal.x = 200;
+    normal.scale.setTo(0.75);
 
-    pato2.y = 200;
-    pato2.x = 200;
 
-
-    let pato3 = game.add.image(0, 0, "patoC");
+    // Crea el botón de imagen
+    let dificil = game.add.button(100, 200, 'patoC', actionOnClick, this, 2, 1, 0);
     
-    pato3.scale.setTo(0.75);
-
-    pato3.y = 300;
-    pato3.x = 200;
+    // Cambia la posición del botón
+    dificil.anchor.setTo(0.5, 0.5);
+    dificil.y = 300;
+    dificil.x = 200;
+    dificil.scale.setTo(0.75);
 }
 
 function goToAboutScreen() {
@@ -48,18 +54,32 @@ function goToAboutScreen() {
 
 function goToStageA() {
     stage = 'A';
-    initiateVariablesStart();
+    //initiateVariablesStart();
     game.state.start('stageA');
 }
 
 function goToStageB() {
     stage = 'B';
-    initiateVariablesStart();
+    //initiateVariablesStart();
     game.state.start('stageB');
 }
 
 function goToStageC() {
     stage = 'C';
-    initiateVariablesStart();
+    //initiateVariablesStart();
     game.state.start('stageC');
 }
+
+
+function create() {
+    // Crea el botón de imagen
+    var button = game.add.button(game.world.centerX, game.world.centerY, 'buttonImage', actionOnClick, this, 2, 1, 0);
+    
+    // Cambia la posición del botón
+    button.anchor.setTo(0.5, 0.5);
+}
+
+function actionOnClick() {
+    goToStageA();
+}
+
