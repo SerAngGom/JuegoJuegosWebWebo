@@ -44,23 +44,26 @@ function createStageC() {
 
 function updateStageC() {
 
-
-        // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
-        if (cursors.left.justDown) 
-        {
-            goose.x -= salto;
-            if (estado == "derecha") goose.scale.setTo(-1, 1);
-            estado = "izquierda";
-        }
-    
-        // Mueve el personaje hacia la derecha si se presiona la flecha derecha
-        else if (cursors.right.justDown) 
-        {
-            goose.x += salto;
-            if (estado == "izquierda") goose.scale.setTo(1, 1);
-            estado = "derecha";
-        }
+    move_goose();
 
 
   //  checkCollision();
+}
+
+function move_goose(){
+    // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
+    if (cursors.left.justDown) 
+    {
+        goose.x -= salto;
+        if (estado == "derecha") goose.scale.setTo(-1, 1);
+        estado = "izquierda";
+    }
+
+    // Mueve el personaje hacia la derecha si se presiona la flecha derecha
+    else if (cursors.right.justDown) 
+    {
+        goose.x += salto;
+        if (estado == "izquierda") goose.scale.setTo(1, 1);
+        estado = "derecha";
+    }
 }
