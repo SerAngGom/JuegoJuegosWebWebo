@@ -2,7 +2,7 @@
 //--------LOADING STAGES--------------------------------------
 //————————————————————————————————————————————————————————————
 
-function loadStages(s) {
+function loadStages() {
     game.load.image('bg', 'assets/imgs/background.png');
 
     game.load.image('goose', 'assets/imgs/goose.png');
