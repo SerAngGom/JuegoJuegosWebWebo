@@ -9,42 +9,43 @@ let stageB = {
 //————————————————————————————————————————————————————————————
 
 function loadStageB() {
-    loadStages('B');
+    game.load.image('bg', 'assets/imgs/background.png');
+
+    game.load.image('goose', 'assets/imgs/goose.png');
+    game.load.image('wood', 'assets/imgs/palo.png');
+    game.load.image('bread', 'assets/imgs/pan.png');
+    game.load.image('foreground', 'assets/imgs/foreground.png');
+    game.load.image('cuerdaHaciaDer', 'assets/imgs/cuerdaHaciaDer.png');
+    game.load.image('cuerdaHaciaIzq', 'assets/imgs/cuerdaHaciaIzq.png');
+    game.load.image('catfish', 'assets/imgs/siluro.png');
+
 }
 
 function createStageB() {
-    // set the background image
-    game.add.image(-1, -1, "bg");
 
-    // load the json files
-    dictionary = JSON.parse(this.game.cache.getText('dictionary'));
-    levelData = JSON.parse(this.game.cache.getText('wavesB'));
+    // set the background image
+    game.add.image( 0, 0, "bg");
+
+    let goose = game.add.image(450, 100, "goose");
+    let wood = game.add.image(100, 0, "wood");
+  
+    
+   
 
     // load info for the wave and play music
-    initiateVariables();
-    readWaveInfo(wave);
-    playMusic();
+    //initiateVariables();
+    //playMusic();
 
-    // for reading the keyboard and mouse
-    cursors = game.input.keyboard.createCursorKeys();
-    game.input.keyboard.onDownCallback = readKeyboard;
-    mouse = game.input.mspointer;
-    game.input.mspointer.pointerMoveCallback = moveTypist;
+    // for reading the keyboard
+    //cursors = game.input.keyboard.createCursorKeys();
+    //game.input.keyboard.onDownCallback = readKeyboard;
+    //Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
 
-    // create the typist's sprite and configure it
-    typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame*/);
-    typist.configTypistSprite();
-
-    // timers to create the OWPs
-    game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', true);
-    if (numberBeetles > 0)
-        game.time.events.repeat(waveAppearanceRate * 2, numberBeetles, createOWP, this, 'beetle', true);
-    if (numberMoths > 0)
-        game.time.events.repeat(waveAppearanceRate * 3, numberMoths, createOWP, this, 'moth', true);
+    //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
 }
 
 function updateStageB() {
 
-    checkCollision();
-    moveWords();
+  //  checkCollision();
+// moveWords();
 }

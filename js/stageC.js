@@ -2,62 +2,74 @@ let stageC = {
     preload: loadStageC,
     create: createStageC,
     update: updateStageC
-};
+}
+
+//————————————————————————————————————————————————————————————
+//--------LOAD, CREATE AND UPDATE STAGE-----------------------
+//————————————————————————————————————————————————————————————
+let goose;
+let velocidad = 5;
 
 function loadStageC() {
-    loadStages('C');
+    game.load.image('bg', 'assets/imgs/background.png');
+
+    game.load.image('goose', 'assets/imgs/goose.png');
+    game.load.image('wood', 'assets/imgs/palo.png');
+    game.load.image('bread', 'assets/imgs/pan.png');
+    game.load.image('foreground', 'assets/imgs/foreground.png');
+    game.load.image('cuerdaHaciaDer', 'assets/imgs/cuerdaHaciaDer.png');
+    game.load.image('cuerdaHaciaIzq', 'assets/imgs/cuerdaHaciaIzq.png');
+    game.load.image('catfish', 'assets/imgs/siluro.png');
+
 }
 
 function createStageC() {
-    // set the background image
-    game.add.image(-1, -1, "bg");
 
-    /*
-    // load the json files
-    dictionary = JSON.parse(this.game.cache.getText('dictionary'));
-    levelData = JSON.parse(this.game.cache.getText('wavesB'));
+    // set the background image
+    game.add.image( 0, 0, "bg");
+
+    let wood = game.add.image(100, 0, "wood");
+
+    // Crea el personaje y ajusta su escala y posición
+    goose = game.add.sprite(200, 200, 'goose').scale.setTo(0.5);
+
+
+    // Habilita las teclas de flecha para el juego
+    cursors = game.input.keyboard.createCursorKeys();
 
     // load info for the wave and play music
-    initiateVariables();
-    readWaveInfo(wave);
-    */
-    playMusic();
+    //initiateVariables();
+    //playMusic();
 
-    /*
-    // for reading the keyboard and mouse
-    cursors = game.input.keyboard.createCursorKeys();
-    game.input.keyboard.onDownCallback = readKeyboard;
-    mouse = game.input.mspointer;
-    game.input.mspointer.pointerMoveCallback = moveTypist;
+    // for reading the keyboard
+    //cursors = game.input.keyboard.createCursorKeys();
+    //game.input.keyboard.onDownCallback = readKeyboard;
+    //Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
 
-    // create the typist's sprite and configure it
-    typist.sprite = game.add.sprite(typist.x, typist.y, 'frog' /*, frame);
-    typist.configTypistSprite();
-
-    // timers to create the OWPs
-    game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', true);
-    if (numberBeetles > 0)
-        game.time.events.repeat(waveAppearanceRate * 2, numberBeetles, createOWP, this, 'beetle', true);
-    if (numberMoths > 0)
-        game.time.events.repeat(waveAppearanceRate * 3, numberMoths, createOWP, this, 'moth', true);
-    */
-
-    let infoText;
-
-    infoText = game.add.text(TITLE_OFFSET, TITLE_OFFSET, 'WORK IN PROGRESS', { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold' } );
-    infoText.addColor(color, 0);
-
-    infoText = game.add.text(TITLE_OFFSET, 7 * TITLE_OFFSET, 'Please click on the button to go back.', { font: 'Source Sans Pro', fontSize: '20px' } );
-    infoText.addColor(color, 0);
-
-    //button for going  back to the start screen
-    btnStart = game.add.button(20, 20, 'start', clickBackToStart);
-    btnStart.anchor.setTo(0.5);
-    btnStart.position.setTo(GAME_AREA_WIDTH / 2, 670);
+    //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
 }
 
 function updateStageC() {
 
-    checkCollision();
-    checkOut();
+        // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
+        if (cursors.left.isDown) {
+            goose.x -= velocidad;
+        }
+    
+        // Mueve el personaje hacia la derecha si se presiona la flecha derecha
+        if (cursors.right.isDown) {
+            goose.x += velocidad;
+        }
+    
+        // Mueve el personaje hacia arriba si se presiona la flecha arriba
+        if (cursors.up.isDown) {
+            goose.y -= velocidad;
+        }
+    
+        // Mueve el personaje hacia abajo si se presiona la flecha abajo
+        if (cursors.down.isDown) {
+            goose.y += velocidad;
+        }
+  //  checkCollision();
+// moveWords();
 }

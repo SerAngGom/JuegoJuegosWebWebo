@@ -19,7 +19,7 @@ function createStartScreen() {
     game.add.image(0, 0, "bg");
 
     // Crea el botón de imagen
-    let facil = game.add.button(100, 200, 'patoA', actionOnClick, this, 2, 1, 0);
+    let facil = game.add.button(100, 200, 'patoA', goToStageA, this, 2, 1, 0);
     
     // Cambia la posición del botón
     facil.anchor.setTo(0.5, 0.5);
@@ -29,7 +29,7 @@ function createStartScreen() {
 
 
     // Crea el botón de imagen
-    let normal = game.add.button(100, 200, 'patoB', actionOnClick, this, 2, 1, 0);
+    let normal = game.add.button(100, 200, 'patoB', goToStageB, this, 2, 1, 0);
     
     // Cambia la posición del botón
     normal.anchor.setTo(0.5, 0.5);
@@ -39,7 +39,7 @@ function createStartScreen() {
 
 
     // Crea el botón de imagen
-    let dificil = game.add.button(100, 200, 'patoC', actionOnClick, this, 2, 1, 0);
+    let dificil = game.add.button(100, 200, 'patoC', goToStageC, this, 2, 1, 0);
     
     // Cambia la posición del botón
     dificil.anchor.setTo(0.5, 0.5);
@@ -77,9 +77,5 @@ function create() {
     
     // Cambia la posición del botón
     button.anchor.setTo(0.5, 0.5);
-}
-
-function actionOnClick() {
-    goToStageA();
 }
 
