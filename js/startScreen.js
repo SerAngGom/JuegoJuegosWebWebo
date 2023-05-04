@@ -26,7 +26,7 @@ function createStartScreen() {
     pato1.y = 100;
     pato1.x = 200;
 
-    let pato2 = game.add.image(0, 0, "patoA");
+    let pato2 = game.add.image(0, 0, "patoB");
     
     pato2.scale.setTo(0.75);
 
@@ -34,22 +34,12 @@ function createStartScreen() {
     pato2.x = 200;
 
 
-    let pato3 = game.add.image(0, 0, "patoA");
+    let pato3 = game.add.image(0, 0, "patoC");
     
     pato3.scale.setTo(0.75);
 
     pato3.y = 300;
     pato3.x = 200;
-
-
-    let pato4 = game.add.image(0, 0, "patoA");
-    
-    pato4.scale.setTo(5);
-
-    pato4.y = 300;
-    //pato4.x = -0.75 * pato4.width;
-
-
 }
 
 function goToAboutScreen() {
