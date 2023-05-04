@@ -1,4 +1,4 @@
-// the game is created in constantDefinitions.js
+//Game creation
 let game = new Phaser.Game(800, 500, Phaser.AUTO, 'game');
 
 // entry point ———————————————————————————————————————————————
