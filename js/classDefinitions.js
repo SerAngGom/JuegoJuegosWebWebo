@@ -32,13 +32,14 @@ class Goose {
 //————————————————————————————————————————————————————————————
 class Wood{
     constructor(x){
-        this.x= 50;
-        this.y= 50; //constante
+        this.x= 100;
+        this.y= 100; //constante
         this.type= 'wood';
         this.sprite;
     }
     configgooseSprite() {
         this.sprite.anchor.setTo(1);
+        game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     }
 
 }
