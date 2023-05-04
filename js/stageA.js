@@ -29,7 +29,7 @@ function createStageA() {
     game.add.image( 0, 0, "bg");
 
     let goose = game.add.image(100, 350, "goose");
-    create_wood(8);    
+    create_wood(6);    
 
     // load info for the wave and play music
     //initiateVariables();
