@@ -8,7 +8,7 @@ let stageC = {
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
 let goose;
-let velocidad = 5;
+let salto = 100;
 
 function loadStageC() {
     game.load.image('bg', 'assets/imgs/background.png');
@@ -31,7 +31,8 @@ function createStageC() {
     let wood = game.add.image(100, 0, "wood");
 
     // Crea el personaje y ajusta su escala y posición
-    goose = game.add.sprite(200, 200, 'goose').scale.setTo(0.5);
+    goose = game.add.image(200, 200, 'goose');
+    goose.scale.setTo(0.5);
 
 
     // Habilita las teclas de flecha para el juego
@@ -53,22 +54,14 @@ function updateStageC() {
 
         // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
         if (cursors.left.isDown) {
-            goose.x -= velocidad;
+            goose.x += 2;//salto; 
+
         }
     
         // Mueve el personaje hacia la derecha si se presiona la flecha derecha
         if (cursors.right.isDown) {
-            goose.x += velocidad;
-        }
-    
-        // Mueve el personaje hacia arriba si se presiona la flecha arriba
-        if (cursors.up.isDown) {
-            goose.y -= velocidad;
-        }
-    
-        // Mueve el personaje hacia abajo si se presiona la flecha abajo
-        if (cursors.down.isDown) {
-            goose.y += velocidad;
+            goose.x -= 2;
+            
         }
   //  checkCollision();
 // moveWords();
