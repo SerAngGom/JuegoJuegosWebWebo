@@ -9,12 +9,16 @@ let stageA = {
 //————————————————————————————————————————————————————————————
 
 function loadStageA() {
-<<<<<<< Updated upstream
-    loadStages();
- 
-=======
-    //loadStages('A');
->>>>>>> Stashed changes
+    game.load.image('bg', 'assets/imgs/background.png');
+
+    game.load.image('goose', 'assets/imgs/goose.png');
+    game.load.image('wood', 'assets/imgs/palo.png');
+    game.load.image('bread', 'assets/imgs/pan.png');
+    game.load.image('foreground', 'assets/imgs/foreground.png');
+    game.load.image('cuerdaHaciaDer', 'assets/imgs/cuerdaHaciaDer.png');
+    game.load.image('cuerdaHaciaIzq', 'assets/imgs/cuerdaHaciaIzq.png');
+    game.load.image('catfish', 'assets/imgs/siluro.png');
+
 }
 
 function createStageA() {
@@ -23,31 +27,25 @@ function createStageA() {
     game.add.image( 0, 0, "bg");
 
     let goose = game.add.image(450, 100, "goose");
-    let wood = game.add.image(100, WOOD_Y, "wood");
+    let wood = game.add.image(100, 0, "wood");
   
     
-    function create_wood(x){
-        diff = 800/x
-        for(i=0; i=x; i++){
-            game.add.wood(wood, diff);  
-        }
-            
-    }
+   
 
     // load info for the wave and play music
     //initiateVariables();
     //playMusic();
 
     // for reading the keyboard
-    cursors = game.input.keyboard.createCursorKeys();
+    //cursors = game.input.keyboard.createCursorKeys();
     //game.input.keyboard.onDownCallback = readKeyboard;
-    Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
+    //Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
 
     //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
 }
 
 function updateStageA() {
 
-    checkCollision();
-    moveWords();
+  //  checkCollision();
+// moveWords();
 }
