@@ -32,7 +32,7 @@ function createStageA() {
     rand = randomNumber(1, num); 
     diff = 700/num;
     drop_bread(diff*rand+100);
-    
+   
 
     let goose = game.add.image(100, 350, "goose");
 
@@ -63,8 +63,7 @@ function create_wood(x){
 function drop_bread(x){
     let bread = game.add.image(x, 100, "bread");
     bread.anchor.setTo(0.5, 0.5);
-    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-
+    game.physics.enable(bread, Phaser.Physics.ARCADE);
     moveTo(bread, x, 500);
     
 }
