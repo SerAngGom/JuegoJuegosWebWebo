@@ -31,8 +31,8 @@ function createStageC() {
     let wood = game.add.image(100, 0, "wood");
 
     // Crea el personaje y ajusta su escala y posición
-    goose = game.add.image(200, 200, 'goose');
-    goose.scale.setTo(0.5);
+    goose = game.add.image(500, 375, "goose");
+
 
 
     // Habilita las teclas de flecha para el juego
@@ -52,17 +52,22 @@ function createStageC() {
 
 function updateStageC() {
 
-        // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
-        if (cursors.left.isDown) {
-            goose.x += 2;//salto; 
 
+        // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
+        if (cursors.left.justDown) 
+        {
+            goose.x -= salto;
         }
     
         // Mueve el personaje hacia la derecha si se presiona la flecha derecha
-        if (cursors.right.isDown) {
-            goose.x -= 2;
-            
+        else if (cursors.right.justDown) 
+        {
+            goose.x += salto;
         }
+
+
+
+
   //  checkCollision();
 // moveWords();
 }
