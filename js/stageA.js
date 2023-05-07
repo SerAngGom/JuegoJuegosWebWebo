@@ -39,7 +39,6 @@ function createStageA() {
 
 function updateStageA() {
 
-    move_goose();
     bread.y += 50;
 
     //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
@@ -63,20 +62,4 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-function move_goose(){
-    // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
-    if (cursors.left.justDown) 
-    {
-        goose.x -= salto;
-        if (estado == "derecha") goose.scale.setTo(-1, 1);
-        estado = "izquierda";
-    }
 
-    // Mueve el personaje hacia la derecha si se presiona la flecha derecha
-    else if (cursors.right.justDown) 
-    {
-        goose.x += salto;
-        if (estado == "izquierda") goose.scale.setTo(1, 1);
-        estado = "derecha";
-    }
-}
