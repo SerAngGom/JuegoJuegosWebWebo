@@ -26,32 +26,23 @@ function createStageA() {
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    num = 8;
     create_wood(num);
-
-    rand = randomNumber(1, num); 
-    diff = 700/num;
-    drop_bread(diff*rand+100);
+    bread = game.add.image(-100, 100, "bread");
+    drop_bread(diff*rand+25, bread);
    
 
-    let goose = game.add.image(100, 350, "goose");
-
-    // load info for the wave and play music
-    //initiateVariables();
-    //playMusic();
-
-    // for reading the keyboard
-    //cursors = game.input.keyboard.createCursorKeys();
-    //game.input.keyboard.onDownCallback = readKeyboard;
-    //Wood.sprite = game.add.sprite(Wood.x, Wood.y, 'wood' /*, frame*/);
-
-    //game.time.events.repeat(waveAppearanceRate, numberFlies, createOWP, this, 'fly', 'timer');
+    goose = game.add.image(100, 350, "goose");
+    let estado = "derecha";
+    cursors = game.input.keyboard.createCursorKeys();
+  
 }
 
 function updateStageA() {
 
-  //  checkCollision();
-// moveWords();
+    move_goose();
+    bread.y += 50;
+
+    //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
 }
 
 function create_wood(x){
@@ -60,15 +51,32 @@ function create_wood(x){
         let wood = game.add.image(diff*i+100, 0, "wood");        
     }  
 }
-function drop_bread(x){
-    let bread = game.add.image(x, 100, "bread");
+function drop_bread(x, bread){
+    bread = game.add.image(x, 100, "bread");
     bread.anchor.setTo(0.5, 0.5);
-    game.physics.enable(bread, Phaser.Physics.ARCADE);
-    moveTo(bread, x, 500);
-    
+    game.physics.arcade.enable(bread);
+    bread.enableBody = true;
 }
+
 function randomNumber(min, max) {
     max += 1;
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+function move_goose(){
+    // Mueve el personaje hacia la izquierda si se presiona la flecha izquierda
+    if (cursors.left.justDown) 
+    {
+        goose.x -= salto;
+        if (estado == "derecha") goose.scale.setTo(-1, 1);
+        estado = "izquierda";
+    }
+
+    // Mueve el personaje hacia la derecha si se presiona la flecha derecha
+    else if (cursors.right.justDown) 
+    {
+        goose.x += salto;
+        if (estado == "izquierda") goose.scale.setTo(1, 1);
+        estado = "derecha";
+    }
+}

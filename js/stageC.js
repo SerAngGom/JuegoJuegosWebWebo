@@ -7,8 +7,7 @@ let stageC = {
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
-let goose;
-let salto = 100;
+
 
 function loadStageC() {
     game.load.image('bg', 'assets/imgs/background.png');
