@@ -14,10 +14,11 @@ let ropes;
 let wood;
 let remainingTime;
 let speed = 1;
-let num = 9;                                //number of sticks (will be defined in the settings menu)
+let num = 4;                                //number of sticks (will be defined in the settings menu)
 let diff = 700/num;                         //distance between sticks depends on how many there are
 let rand = randomNumber(1, num);            //Bread falls on a random stick
-let estado = "derecha";                     //The duck flips and is defaulted to looking right
+let estado = "derecha";    //The duck flips and is defaulted to looking right
+let numB = 6;                 
 
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE-------------------------------
@@ -44,15 +45,8 @@ function createStageB() {
     timerClock = game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
     create_wood(num);
-    generate_ropes(diff*rand, 4);
-
-    bread = game.add.image(0, 0, "bread");
-    bread.anchor.setTo(0.5, 0.5);
-    bread.x = diff*(rand-1)+100;
-    game.physics.arcade.enable(bread);
-    bread.enableBody = true;
-   
-   
+    generate_ropes(diff*rand, 3);
+    createBread(5);
 
     goose = game.add.image(100, 400, "goose");
     goose.anchor.setTo(0.5, 0.5);
@@ -66,11 +60,30 @@ function createStageB() {
 }
 
 
-function updateStageB() {
+function createBread(num){
 
-    move_goose();
-    bread.y += speed;
+    bread = game.add.group();
+    game.physics.arcade.enable(bread);
+    bread.enableBody = true;
     
+    bread.createMultiple(num, bread);
+    //var breads.bread.create(0, 0, img);
+    game.physics.arcade.enable(bread);
+    bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
+    bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+    bread.callAll('x', diff*(rand-1)+100 );
+
+}
+
+function resetMember(bread){
+    //bread.kill();
+}
+function updateStageB() {
+    
+    bread.forEach(moveBread, this);
+    move_goose();
+
+    //bread.y += speed;
     //game.physics.arcade.overlap(goose, bread, collide, null, this);
     
 }
@@ -79,15 +92,24 @@ function updateStageB() {
 //--------------------FUNCTIONS-------------------------------
 //————————————————————————————————————————————————————————————
 
-
+function moveBread(unibread) {
+    console.log(unibread);
+    var speed = 100;
+    unibread.x = diff*(rand-1)+100;
+    unibread.y =speed;
+  }
 function timerEvent(){                              //Bread will fall depending on a timer
 
-    rand = randomNumber(1, num);
-    bread = game.add.image(0, 0, "bread");
-    bread.anchor.setTo(0.5, 0.5);
-    bread.x = diff*(rand-1)+100;
-    game.physics.arcade.enable(bread);
-    bread.enableBody = true;
+
+            
+        
+
+    //rand = randomNumber(1, num);
+    //bread = game.add.image(0, 0, "bread");
+    //bread.anchor.setTo(0.5, 0.5);
+   
+    //game.physics.arcade.enable(bread);
+    //bread.enableBody = true;
 }
 
 
@@ -112,13 +134,14 @@ function generate_ropes(x, y){
         woods = randomNumber(1, x);
         let ropes; 
 
-        if (side == 1) ropes = game.add.image(diff*i+100, 50*height, "rightRope");     
-        else ropes = game.add.image(diff*i+100, height, "leftRope");
+        if (side == 1) ropes = game.add.image(diff*i+98, 50*height, "rightRope");     
+        else ropes = game.add.image(diff*i+98, height, "leftRope");
         
     }
 }
 
 function move_goose(){
+    cursors = game.input.keyboard.createCursorKeys();
     // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
     if (cursors.left.justDown) 
     {
