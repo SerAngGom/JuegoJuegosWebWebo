@@ -41,7 +41,7 @@ function loadStageB() {
     game.load.image('grapes', 'assets/imgs/uvas.png');
     game.load.image('shooting', 'assets/imgs/shoot.png');
     game.load.image('projectile', 'assets/imgs/projectile.png');
-    game.load.image('splash', 'assets/imgs/explostion.png');
+    game.load.image('splash', 'assets/imgs/explosion.png');
     
 }
 
@@ -71,16 +71,11 @@ function createStageB() {
 
 function updateStageB() {
     
-    if (game.physics.arcade.overlap(ropes, bread, collide, null, this) = false){
-        bread.forEach(moveBread, this);
-
-    }
-    else 
+    bread.forEach(moveBread, this);
     
     move_goose();
 
-    //bread.y += speed;
-    game.physics.arcade.overlap(ropes, bread, collide, null, this);
+    game.physics.arcade.overlap(bread, ropes, collide, null, this);
     game.add.image(0, 0, "foreground");
 }
 
@@ -93,11 +88,10 @@ function moveBread(unibread) {
     unibread.y += speed;
   }
   function collide(unibread) {
-    
-    
-    unibread.goTo(ropes.x + 192);
-    unibread.goTo(ropes.y +80);
-    
+    unibread.speed = 0;
+    unibread.x += speed;
+    unibread.y += speed;
+    //(unibread.x - 192), (unibread.y - 80)
   }
 
   function createBread(num){
@@ -115,7 +109,7 @@ function moveBread(unibread) {
 }
 
 function resetMember(bread){
-    //bread.kill();
+    bread.kill();
 }
 
 function timerEvent(){                       //Bread will fall depending on a timer
@@ -151,7 +145,7 @@ function generate_ropes(x, y){
         
 
         if (side == 1) ropes.create(diff*i+98, 50*height, "rightRope");     
-        else  ropes.create(diff*i+98, height, "leftRope");
+        else  ropes.create(diff*i+98, 50*height, "leftRope");
         
     }
 }
