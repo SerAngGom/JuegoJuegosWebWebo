@@ -71,8 +71,12 @@ function createStageB() {
 
 function updateStageB() {
     
-    bread.forEach(moveBread, this);
+    if (game.physics.arcade.overlap(ropes, bread, collide, null, this) = false){
+        bread.forEach(moveBread, this);
 
+    }
+    else 
+    
     move_goose();
 
     //bread.y += speed;
@@ -85,10 +89,15 @@ function updateStageB() {
 //————————————————————————————————————————————————————————————
 
 function moveBread(unibread) {
-    console.log(unibread);
-    
     unibread.x = diff*(rand-1)+100;
     unibread.y += speed;
+  }
+  function collide(unibread) {
+    
+    
+    unibread.goTo(ropes.x + 192);
+    unibread.goTo(ropes.y +80);
+    
   }
 
   function createBread(num){
@@ -120,10 +129,6 @@ function timerEvent(){                       //Bread will fall depending on a ti
     //bread.enableBody = true;
 }
 
-
-function collide(){
-    bread.y = ropes.y+50;
-}
 
 function create_wood(x){                            //Creates x amounts of sticks
 
