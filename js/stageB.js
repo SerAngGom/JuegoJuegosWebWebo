@@ -55,7 +55,7 @@ function createStageB() {
     cursors = game.input.keyboard.createCursorKeys();
 
     game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
-  
+    
 }
 
 
@@ -63,6 +63,7 @@ function createStageB() {
 function updateStageB() {
     
     bread.forEach(moveBread, this);
+
     move_goose();
 
     //bread.y += speed;
@@ -87,10 +88,11 @@ function moveBread(unibread) {
     game.physics.arcade.enable(bread);
     bread.enableBody = true;
     
-    bread.createMultiple(num, bread);
+    bread.createMultiple(num, "bread");
     game.physics.arcade.enable(bread);
     bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
     bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+    bread.callAll('enableBody', true);
 
 }
 
@@ -99,7 +101,6 @@ function resetMember(bread){
 }
 
 function timerEvent(){                              //Bread will fall depending on a timer
-
 
     //rand = randomNumber(1, num);
     //bread = game.add.image(0, 0, "bread");
@@ -126,7 +127,7 @@ function generate_ropes(x, y){
     ropes = game.add.group();
     game.physics.arcade.enable(ropes);
     ropes.enableBody = true;
-    
+
     for(i=0; i<y; i++){
 
         side = randomNumber(1,2);
