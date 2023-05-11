@@ -70,8 +70,13 @@ function createStageB() {
 
 function updateStageB() {
     
+<<<<<<< Updated upstream
     bool = game.physics.arcade.overlap(bread, ropes, collide, null, this);
     bread.forEach(moveBread, this, bool);
+=======
+
+    bread.forEach(moveBread,this);
+>>>>>>> Stashed changes
     
     move_goose();    
     game.add.image(0, 0, "foreground");
