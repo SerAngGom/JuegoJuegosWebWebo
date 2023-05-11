@@ -47,7 +47,6 @@ function createStageB() {
     create_wood(num);
     generate_ropes(diff*rand, 3);
     createBread(5);
-
     goose = game.add.image(100, 400, "goose");
     goose.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(goose);
@@ -60,31 +59,14 @@ function createStageB() {
 }
 
 
-function createBread(num){
 
-    bread = game.add.group();
-    game.physics.arcade.enable(bread);
-    bread.enableBody = true;
-    
-    bread.createMultiple(num, bread);
-    //var breads.bread.create(0, 0, img);
-    game.physics.arcade.enable(bread);
-    bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-    bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-    bread.callAll('x', diff*(rand-1)+100 );
-
-}
-
-function resetMember(bread){
-    //bread.kill();
-}
 function updateStageB() {
     
     bread.forEach(moveBread, this);
     move_goose();
 
     //bread.y += speed;
-    //game.physics.arcade.overlap(goose, bread, collide, null, this);
+    game.physics.arcade.overlap(ropes, bread, collide, null, this);
     
 }
 
@@ -98,11 +80,26 @@ function moveBread(unibread) {
     unibread.x = diff*(rand-1)+100;
     unibread.y =speed;
   }
+
+  function createBread(num){
+
+    bread = game.add.group();
+    game.physics.arcade.enable(bread);
+    bread.enableBody = true;
+    
+    bread.createMultiple(num, bread);
+    game.physics.arcade.enable(bread);
+    bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
+    bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+
+}
+
+function resetMember(bread){
+    //bread.kill();
+}
+
 function timerEvent(){                              //Bread will fall depending on a timer
 
-
-            
-        
 
     //rand = randomNumber(1, num);
     //bread = game.add.image(0, 0, "bread");
@@ -126,16 +123,19 @@ function create_wood(x){                            //Creates x amounts of stick
 
 function generate_ropes(x, y){
                                       //y is the amount of ropes, depends on difficulty
+    ropes = game.add.group();
+    game.physics.arcade.enable(ropes);
+    ropes.enableBody = true;
     
     for(i=0; i<y; i++){
 
         side = randomNumber(1,2);
         height = randomNumber(1, 6);
         woods = randomNumber(1, x);
-        let ropes; 
+        
 
-        if (side == 1) ropes = game.add.image(diff*i+98, 50*height, "rightRope");     
-        else ropes = game.add.image(diff*i+98, height, "leftRope");
+        if (side == 1) ropes.create(diff*i+98, 50*height, "rightRope");     
+        else  ropes.create(diff*i+98, height, "leftRope");
         
     }
 }
