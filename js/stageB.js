@@ -64,15 +64,19 @@ function createStageB() {
 
     game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
     
+    
+    bread.x =  diff*(rand-1)+100;
+    
 }
-
-
+var change = false;
 
 function updateStageB() {
     
-    bool = game.physics.arcade.overlap(bread, ropes, collide, null, this);
-    bread.forEach(moveBread, this, bool);
-    
+    game.physics.arcade.overlap(bread, ropes, collide, null, this);
+
+  
+     bread.forEach(moveBread, this);
+     change = false;
     move_goose();    
     game.add.image(0, 0, "foreground");
 }
@@ -80,20 +84,21 @@ function updateStageB() {
 //————————————————————————————————————————————————————————————
 //--------------------FUNCTIONS-------------------------------
 //————————————————————————————————————————————————————————————
+let skip = 0;
+function moveBread(unibread) {
+   
+        if (change == false) {
+            unibread.y += speed;
+        }
+        else 
+        {
+            unibread.x += speed;
+            unibread.y += speed;   
+        }
+    }
 
-function moveBread(unibread, bool) {
-    unibread.x = diff*(rand-1)+100;
-    unibread.y += speed;
-    if (bool == true) unibread.speed = 0;
-
-
-
-  }
   function collide(unibread) {
-    console.log('a');
-    unibread.speed = 0;
-    unibread.x += 10;
-    //(unibread.x - 192), (unibread.y - 80)
+    change = true;
   }
 
   function createBread(num){
@@ -101,8 +106,8 @@ function moveBread(unibread, bool) {
     bread = game.add.group();
     game.physics.arcade.enable(bread);
     bread.enableBody = true;
-    
-    bread.createMultiple(num, "bread", 1, 1);
+
+    bread.createMultiple(num, "bread",diff*(rand-1)+100, 1);
     game.physics.arcade.enable(bread);
     bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
     bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
@@ -111,18 +116,19 @@ function moveBread(unibread, bool) {
 }
 
 function resetMember(bread){
-    bread.kill();
+    bread.x = 0;
+    bread.y = 0;
+
 }
 
 function timerEvent(){                       //Bread will fall depending on a timer
 
-    
-    //rand = randomNumber(1, num);
-    //bread = game.add.image(0, 0, "bread");
-    //bread.anchor.setTo(0.5, 0.5);
-   
-    //game.physics.arcade.enable(bread);
-    //bread.enableBody = true;
+        let unibread = bread.getFirstExists();
+        unibread.reset(0, 0);
+        unibread.body.velocity.x = 0;
+        unibread.body.velocity.y = 0;
+      
+        
 }
 
 
