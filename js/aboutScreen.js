@@ -52,7 +52,7 @@ function createAbout() {
 
     let textAT = 'Get to the right position to shoot the bread.\n';
     textAT += 'Then, click or press space to shoot at it!\n';
-  
+
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',
@@ -93,7 +93,7 @@ function showCredits() {
     let textAC = 'This game has been created by\n';
     textAC += '\n';
     textAC += 'TEAM WEBO\n';
- 
+
     style = {
         font: 'Source Sans Pro',
         fontWeight: '400',

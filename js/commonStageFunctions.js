@@ -26,5 +26,4 @@ function create_wood(x){
 }
 
 function shoot(){
-    
 }

@@ -51,18 +51,13 @@ function createStageB() {
     bread.x = diff*(rand-1)+100;
     game.physics.arcade.enable(bread);
     bread.enableBody = true;
-   
-   
-
     goose = game.add.image(100, 400, "goose");
     goose.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(goose);
     goose.enableBody = true;
-    
     cursors = game.input.keyboard.createCursorKeys();
-
     game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
-  
+
 }
 
 
@@ -70,9 +65,9 @@ function updateStageB() {
 
     move_goose();
     bread.y += speed;
-    
+
     //game.physics.arcade.overlap(goose, bread, collide, null, this);
-    
+
 }
 
 //————————————————————————————————————————————————————————————
