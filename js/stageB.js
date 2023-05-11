@@ -64,7 +64,6 @@ function createStageB() {
 
     game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
     
-    
 }
 
 
@@ -75,7 +74,10 @@ function updateStageB() {
     
     move_goose();
 
-    game.physics.arcade.overlap(bread, ropes, collide, null, this);
+    
+    var bool = game.physics.arcade.overlap(bread, ropes, collide, null, this);
+    
+    
     game.add.image(0, 0, "foreground");
 }
 
@@ -86,11 +88,15 @@ function updateStageB() {
 function moveBread(unibread) {
     unibread.x = diff*(rand-1)+100;
     unibread.y += speed;
+    if (bool == true) unibread.speed = 0;
+
+
+
   }
   function collide(unibread) {
+    console.log('a');
     unibread.speed = 0;
-    unibread.x += speed;
-    unibread.y += speed;
+    unibread.x += 10;
     //(unibread.x - 192), (unibread.y - 80)
   }
 
