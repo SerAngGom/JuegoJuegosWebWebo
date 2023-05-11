@@ -70,14 +70,10 @@ function createStageB() {
 
 function updateStageB() {
     
-    bread.forEach(moveBread, this);
+    bool = game.physics.arcade.overlap(bread, ropes, collide, null, this);
+    bread.forEach(moveBread, this, bool);
     
-    move_goose();
-
-    
-    var bool = game.physics.arcade.overlap(bread, ropes, collide, null, this);
-    
-    
+    move_goose();    
     game.add.image(0, 0, "foreground");
 }
 
@@ -85,7 +81,7 @@ function updateStageB() {
 //--------------------FUNCTIONS-------------------------------
 //————————————————————————————————————————————————————————————
 
-function moveBread(unibread) {
+function moveBread(unibread, bool) {
     unibread.x = diff*(rand-1)+100;
     unibread.y += speed;
     if (bool == true) unibread.speed = 0;
