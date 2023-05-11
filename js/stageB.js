@@ -9,16 +9,21 @@ let stageB = {
 //————————————————————————————————————————————————————————————
 
 let bread;
+let numBread = 6;  
+
 let goose;
 let ropes;
 let wood;
+let grapes;
+
 let remainingTime;
-let speed = 1;
+
 let num = 4;                                //number of sticks (will be defined in the settings menu)
 let diff = 700/num;                         //distance between sticks depends on how many there are
 let rand = randomNumber(1, num);            //Bread falls on a random stick
 let estado = "derecha";    //The duck flips and is defaulted to looking right
-let numB = 6;                 
+let speed = 1;
+               
 
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE-------------------------------
@@ -33,8 +38,11 @@ function loadStageB() {
     game.load.image('foreground', 'assets/imgs/foreground.png');
     game.load.image('rightRope', 'assets/imgs/cuerdaHaciaDer.png');
     game.load.image('leftRope', 'assets/imgs/cuerdaHaciaIzq.png');
-    game.load.image('catfish', 'assets/imgs/siluro.png');
-
+    game.load.image('grapes', 'assets/imgs/uvas.png');
+    game.load.image('shooting', 'assets/imgs/shoot.png');
+    game.load.image('projectile', 'assets/imgs/projectile.png');
+    game.load.image('splash', 'assets/imgs/explostion.png');
+    
 }
 
 function createStageB() {
@@ -56,6 +64,7 @@ function createStageB() {
 
     game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
     
+    
 }
 
 
@@ -68,7 +77,7 @@ function updateStageB() {
 
     //bread.y += speed;
     game.physics.arcade.overlap(ropes, bread, collide, null, this);
-    
+    game.add.image(0, 0, "foreground");
 }
 
 //————————————————————————————————————————————————————————————
@@ -77,9 +86,9 @@ function updateStageB() {
 
 function moveBread(unibread) {
     console.log(unibread);
-    var speed = 100;
+    
     unibread.x = diff*(rand-1)+100;
-    unibread.y =speed;
+    unibread.y += speed;
   }
 
   function createBread(num){
@@ -88,20 +97,21 @@ function moveBread(unibread) {
     game.physics.arcade.enable(bread);
     bread.enableBody = true;
     
-    bread.createMultiple(num, "bread");
+    bread.createMultiple(num, "bread", 1, 1);
     game.physics.arcade.enable(bread);
     bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
     bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
     bread.callAll('enableBody', true);
-
+    
 }
 
 function resetMember(bread){
     //bread.kill();
 }
 
-function timerEvent(){                              //Bread will fall depending on a timer
+function timerEvent(){                       //Bread will fall depending on a timer
 
+    
     //rand = randomNumber(1, num);
     //bread = game.add.image(0, 0, "bread");
     //bread.anchor.setTo(0.5, 0.5);
@@ -177,4 +187,4 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-//a dibujar: cuerda 4 palos +2px, cuerdas de cada cant de palos. Uvas. HUD y botones.
+//a dibujar: cuerdas de cada cant de palos. HUD y botones.
