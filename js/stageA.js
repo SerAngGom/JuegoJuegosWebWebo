@@ -29,12 +29,12 @@ function createStageA() {
     create_wood(num);
     bread = game.add.image(-100, 100, "bread");
     drop_bread(diff*rand+25, bread);
-   
+
 
     goose = game.add.image(100, 350, "goose");
     let estado = "derecha";
     cursors = game.input.keyboard.createCursorKeys();
-  
+
 }
 
 function updateStageA() {
@@ -47,8 +47,8 @@ function updateStageA() {
 function create_wood(x){
     diff = 700/x;
     for(i=0; i<x+1; i++){
-        let wood = game.add.image(diff*i+100, 0, "wood");        
-    }  
+        let wood = game.add.image(diff*i+100, 0, "wood");
+    }
 }
 function drop_bread(x, bread){
     bread = game.add.image(x, 100, "bread");
