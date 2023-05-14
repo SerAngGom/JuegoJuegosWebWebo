@@ -93,7 +93,7 @@ function moveBread(unibread) {
         else 
         {
             unibread.x += speed;
-            unibread.y += speed;   
+            unibread.y += speed*1.5;   
         }
     }
 
@@ -123,12 +123,10 @@ function resetMember(bread){
 
 function timerEvent(){                       //Bread will fall depending on a timer
 
-        let unibread = bread.getFirstExists();
+        let unibread = bread.forEach();
         unibread.reset(0, 0);
         unibread.body.velocity.x = 0;
-        unibread.body.velocity.y = 0;
-      
-        
+        unibread.body.velocity.y = 0;         
 }
 
 
@@ -152,8 +150,28 @@ function generate_ropes(x, y){
         woods = randomNumber(1, x);
         
 
-        if (side == 1) ropes.create(diff*i+98, 50*height, "rightRope");     
-        else  ropes.create(diff*i+98, 50*height, "leftRope");
+        if (side == 1){
+            ropes.create(diff*i+98, 50*height, "rightRope"); 
+            this.ropes.scale.setTo(1/num);
+
+            hitboxes = game.add.group();
+            hitboxes.enableBody = true; 
+            this.ropes.addChild(hitboxes);
+            var hitbox1 = hitboxes.create(0,0,null);
+            hitbox1.body.setSize(50, 50, this.ropes.width, this.ropes.height / 2);
+            enableHitbox(hitbox1);
+        }     
+        else { 
+            ropes.create(diff*i+98, 50*height, "leftRope");
+            this.ropes.scale.setTo(1/num);
+
+            hitboxes = game.add.group();
+            hitboxes.enableBody = true; 
+            this.ropes.addChild(hitboxes);
+            var hitbox1 = hitboxes.create(0,0,null);
+            hitbox1.body.setSize(50, 50, this.ropes.width, this.ropes.height / 2);
+            enableHitbox(hitbox1);
+    } 
         
     }
 }
@@ -194,4 +212,3 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-//a dibujar: cuerdas de cada cant de palos. HUD y botones.
