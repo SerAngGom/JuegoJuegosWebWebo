@@ -11,6 +11,7 @@ let stageB = {
 let bread;
 let numBread = 6;  
 
+let fireButton;
 let goose;
 let ropes;
 let wood;
