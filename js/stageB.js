@@ -188,7 +188,7 @@ function generate_ropes(x, y){
             rope = ropes.create(diff*i+98, 50*height, "leftRope");
             rope.scale.x =  4/(num);
 
-            incX = 0;
+            incX = 30*(4/num);
             incY = 50;
             for (k=0; k<5; k++){
                 hitbox = hitboxesL.create(rope.x+incX, rope.y+incY,"grapes");
