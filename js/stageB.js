@@ -11,7 +11,8 @@ let stageB = {
 let bread;
 let numBread = 6;  
 
-let hitboxes;
+let hitboxesL;
+let hitboxesR;
 let fireButton;
 let goose;
 let ropes;
@@ -62,7 +63,6 @@ function createStageB() {
     game.physics.arcade.enable(goose);
     goose.enableBody = true;
     
-    
     cursors = game.input.keyboard.createCursorKeys();
 
     game.time.events.loop(Phaser.Timer.SECOND*10, timerEvent, this);
@@ -70,12 +70,15 @@ function createStageB() {
     bread.x =  diff*(rand-1)+100;
     
 }
-var change = false;
+var changeR = false;
+var changeL = false;
 
 function updateStageB() {
-    game.physics.arcade.overlap(bread, hitboxes, collide, null, this);
+    game.physics.arcade.overlap(bread, hitboxesL, collideL, null, this);
+    game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
     bread.forEach(moveBread, this);
-    change=false;
+    changeR = false;
+    changeL = false;
     move_goose();    
     game.add.image(0, 0, "foreground");
 
@@ -88,21 +91,27 @@ function updateStageB() {
 let skip = 0;
 function moveBread(unibread) {
    
-        if (change == false) {
-            unibread.y += speed;
+        if (changeL != false) {
+           
+            unibread.x -= speed*2;
+            unibread.y += speed; 
         }
-        else 
-        {
+        else if (changeR != false) {
             unibread.x += speed*2;
-            unibread.y += speed;   
+            unibread.y += speed;  
         }
+        else  unibread.y += speed;
     }
 
-  function collide(unibread) {
-    change = true;
+  function collideR(unibread) {
+    changeR = true;
     console.log('a');
   }
  
+  function collideL(unibread) {
+    changeL = true;
+    console.log('a');
+  }
 
   function createBread(num){
 
@@ -110,10 +119,12 @@ function moveBread(unibread) {
     game.physics.arcade.enable(bread);
     bread.enableBody = true;
 
+
     bread.createMultiple(num, "bread",diff*(rand-1)+100, 1);
     game.physics.arcade.enable(bread);
     bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
     bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
+    bread.callAll('scale.setTo', 'scale', 0.7, 0.7);
     bread.callAll('enableBody', true);
     
 }
@@ -145,9 +156,13 @@ function generate_ropes(x, y){
     game.physics.arcade.enable(ropes);
     ropes.enableBody = true;
 
-    hitboxes = game.add.group();
-    game.physics.arcade.enable(hitboxes);
-    hitboxes.enableBody = true;
+    hitboxesR = game.add.group();
+    game.physics.arcade.enable(hitboxesR);
+    hitboxesR.enableBody = true;
+
+    hitboxesL = game.add.group();
+    game.physics.arcade.enable(hitboxesL);
+    hitboxesL.enableBody = true;
 
     for(i=0; i<y; i++){
 
@@ -155,39 +170,33 @@ function generate_ropes(x, y){
         height = randomNumber(1, 6);
         woods = randomNumber(1, x);
         
-
         if (side == 1){
             rope = ropes.create(diff*i+98, 50*height, "rightRope"); 
-            rope.scale.setTo(1/(num-3));
+            rope.scale.x = 4/(num);
            
+
             incX = 0;
             incY = -10;
             for (j=0; j<5; j++){
-                hitbox = hitboxes.create(rope.x+incX, rope.y+incY,"grapes");
+                hitbox = hitboxesR.create(rope.x+incX, rope.y+incY,"grapes");
                 hitbox.scale.setTo(1/4, 1/4);
-                incX += 36;
+                incX += 36*(4/num);
                 incY += 12;
             }
-            
-       
         }     
         else { 
             rope = ropes.create(diff*i+98, 50*height, "leftRope");
-            rope.scale.setTo(1/(num-3));
-
+            rope.scale.x =  4/(num);
 
             incX = 0;
             incY = 50;
             for (k=0; k<5; k++){
-                hitbox = hitboxes.create(rope.x+incX, rope.y+incY,"grapes");
+                hitbox = hitboxesL.create(rope.x+incX, rope.y+incY,"grapes");
                 hitbox.scale.setTo(1/4, 1/4);
-                incX += 36;
+                incX += 36*(4/num);
                 incY -= 12;
             }
-        
-        }
-
-        
+        }  
     }
 }
 
