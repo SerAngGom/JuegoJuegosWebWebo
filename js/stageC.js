@@ -71,68 +71,11 @@ function updateStageC() {
   
 }
 
-function createBread(num){
-
-    bread = game.add.group();
-    game.physics.arcade.enable(bread);
-    bread.enableBody = true;
-    
-    bread.createMultiple(num, bread);
-    //var breads.bread.create(0, 0, img);
-    game.physics.arcade.enable(bread);
-    bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-    bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-    bread.callAll('x', diff*(rand-1)+100 );
-
-}
-
-function resetMember(bread){
-    //bread.kill();
-}
-function updateStageC() {
-    
-    moveBread(1, true);
-    move_goose();
-
-    //bread.y += speed;
-    //game.physics.arcade.overlap(goose, bread, collide, null, this);
-    
-
-}
 
 //————————————————————————————————————————————————————————————
 //--------------------FUNCTIONS-------------------------------
 //————————————————————————————————————————————————————————————
 
-
-function moveBread(unibread, bool) {
-    unibread.x = diff*(rand-1)+100;
-    unibread.y += speed;
-    if (bool == true) unibread.speed = 0;
-
-
-
-  }
-  function collide(unibread) {
-    console.log('a');
-    unibread.speed = 0;
-    unibread.x += 10;
-    //(unibread.x - 192), (unibread.y - 80)
-  }
-
-  function createBread(num){
-
-    bread = game.add.group();
-    game.physics.arcade.enable(bread);
-    bread.enableBody = true;
-    
-    bread.createMultiple(num, "bread", 1, 1);
-    game.physics.arcade.enable(bread);
-    bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-    bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-    bread.callAll('enableBody', true);
-    
-}
 
 function createShoot(num) {
     disparo = game.add.group();
@@ -159,126 +102,12 @@ function resetMember(bread){
     bread.kill();
 }
 
-function timerEvent(){                       //Bread will fall depending on a timer
 
-    
-
-function moveBread(unibread) {
-    console.log(unibread);
-    var speed = 100;
-    unibread.x = diff*(rand-1)+100;
-    unibread.y =speed;
-  }
-function timerEvent(){                              //Bread will fall depending on a timer
-
-
-            
-        
-
-
-    //rand = randomNumber(1, num);
-    //bread = game.add.image(0, 0, "bread");
-    //bread.anchor.setTo(0.5, 0.5);
-   
-    //game.physics.arcade.enable(bread);
-    //bread.enableBody = true;
-}
-
-
-function collide(){
-    bread.y = ropes.y+50;
-}
-
-
-function create_wood(x){                            //Creates x amounts of sticks
-
-    for(i=0; i<x+1; i++){
-        let wood = game.add.image(diff*i+100, 0, "wood");        
-    }  
-}
-
-function generate_ropes(x, y){
-                                      //y is the amount of ropes, depends on difficulty
-
-    ropes = game.add.group();
-    game.physics.arcade.enable(ropes);
-    ropes.enableBody = true;
-
-
-    for(i=0; i<y; i++){
-
-        side = randomNumber(1,2);
-        height = randomNumber(1, 6);
-        woods = randomNumber(1, x);
-
-        
-
-        if (side == 1) ropes.create(diff*i+98, 50*height, "rightRope");     
-        else  ropes.create(diff*i+98, 50*height, "leftRope");
-
-        let ropes; 
-
-        if (side == 1) ropes = game.add.image(diff*i+98, 50*height, "rightRope");     
-        else ropes = game.add.image(diff*i+98, height, "leftRope");
-
-        
-    }
-}
-
-function move_goose(){
-
-    cursors = game.input.keyboard.createCursorKeys();
-    // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
-
-    // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
-    
-
-    if (cursors.left.justDown) 
-    {
-        if (goose.x > 100)
-        {
-            goose.x -= diff;
-
-            if (estado == "derecha")
-            {
-                goose.Scale.setTo(-1, 1);
-                estado = "izquierda";
-            }
-        
-    }
-
-    // IF right arrow pushed, goose moves to the right, unless he's at the utmost right
-    else if (cursors.right.justDown) 
-    {
-
-        if (goose.x != diff*(num-1)+100)
-        {
-            goose.x += diff;
-
-            if (estado == "izquierda") 
-            {
-                goose.scale.setTo(1, 1);
-            }
-            estado = "derecha";
-        }
-    }
-
-    else if (fireButton.justDown)
-    {
-        disparo.forEach(moverProjectile, this);
-
-        console.log("Hola");
-
-    }
-        
-
-}
 
 function moverProjectile(chorro)
 {
     this.chorro.x = goose.x;
     this.y -= 1;
-}
 
         if (goose.x != diff*(num-1)+100){
         goose.x += diff;
@@ -289,7 +118,7 @@ function moverProjectile(chorro)
 
         createShoot(3);
     
-
+}
 
 
 function createShoot(number) {
@@ -309,21 +138,3 @@ function resetMember(item) {
     item.kill();
 }
     
-
-function updateTime() {
-    remainingTime = Math.max(0,remainingTime-1);
-    //hudTime.setText(setRemainingTime(remainingTime));
-    if (remainingTime === 0) {
-    game.time.events.remove(timerClock);
-    }
-}
-
-function randomNumber(min, max) {
-    max += 1;
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-
-//a dibujar: cuerdas de cada cant de palos. HUD y botones
-}
-}

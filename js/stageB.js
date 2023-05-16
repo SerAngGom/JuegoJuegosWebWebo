@@ -11,6 +11,7 @@ let stageB = {
 let bread;
 let numBread = 6;  
 
+let hitboxes;
 let fireButton;
 let goose;
 let ropes;
@@ -61,25 +62,24 @@ function createStageB() {
     game.physics.arcade.enable(goose);
     goose.enableBody = true;
     
+    
     cursors = game.input.keyboard.createCursorKeys();
 
-    game.time.events.loop(Phaser.Timer.SECOND*5, timerEvent, this);
-    
-    
+    game.time.events.loop(Phaser.Timer.SECOND*10, timerEvent, this);
+    fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     bread.x =  diff*(rand-1)+100;
     
 }
 var change = false;
 
 function updateStageB() {
-    
-    game.physics.arcade.overlap(bread, ropes, collide, null, this);
-
-  
-     bread.forEach(moveBread, this);
-     change = false;
+    game.physics.arcade.overlap(bread, hitboxes, collide, null, this);
+    bread.forEach(moveBread, this);
+    change=false;
     move_goose();    
     game.add.image(0, 0, "foreground");
+
+    //moveBread(1, true);
 }
 
 //————————————————————————————————————————————————————————————
@@ -93,14 +93,16 @@ function moveBread(unibread) {
         }
         else 
         {
-            unibread.x += speed;
-            unibread.y += speed*1.5;   
+            unibread.x += speed*2;
+            unibread.y += speed;   
         }
     }
 
   function collide(unibread) {
     change = true;
+    console.log('a');
   }
+ 
 
   function createBread(num){
 
@@ -124,10 +126,9 @@ function resetMember(bread){
 
 function timerEvent(){                       //Bread will fall depending on a timer
 
-        let unibread = bread.forEach();
+        let unibread = bread.getFirstExists();
         unibread.reset(0, 0);
-        unibread.body.velocity.x = 0;
-        unibread.body.velocity.y = 0;         
+        
 }
 
 
@@ -144,6 +145,10 @@ function generate_ropes(x, y){
     game.physics.arcade.enable(ropes);
     ropes.enableBody = true;
 
+    hitboxes = game.add.group();
+    game.physics.arcade.enable(hitboxes);
+    hitboxes.enableBody = true;
+
     for(i=0; i<y; i++){
 
         side = randomNumber(1,2);
@@ -152,27 +157,36 @@ function generate_ropes(x, y){
         
 
         if (side == 1){
-            ropes.create(diff*i+98, 50*height, "rightRope"); 
-            this.ropes.scale.setTo(1/num);
-
-            hitboxes = game.add.group();
-            hitboxes.enableBody = true; 
-            this.ropes.addChild(hitboxes);
-            var hitbox1 = hitboxes.create(0,0,null);
-            hitbox1.body.setSize(50, 50, this.ropes.width, this.ropes.height / 2);
-            enableHitbox(hitbox1);
+            rope = ropes.create(diff*i+98, 50*height, "rightRope"); 
+            rope.scale.setTo(1/(num-3));
+           
+            incX = 0;
+            incY = -10;
+            for (j=0; j<5; j++){
+                hitbox = hitboxes.create(rope.x+incX, rope.y+incY,"grapes");
+                hitbox.scale.setTo(1/4, 1/4);
+                incX += 36;
+                incY += 12;
+            }
+            
+       
         }     
         else { 
-            ropes.create(diff*i+98, 50*height, "leftRope");
-            this.ropes.scale.setTo(1/num);
+            rope = ropes.create(diff*i+98, 50*height, "leftRope");
+            rope.scale.setTo(1/(num-3));
 
-            hitboxes = game.add.group();
-            hitboxes.enableBody = true; 
-            this.ropes.addChild(hitboxes);
-            var hitbox1 = hitboxes.create(0,0,null);
-            hitbox1.body.setSize(50, 50, this.ropes.width, this.ropes.height / 2);
-            enableHitbox(hitbox1);
-    } 
+
+            incX = 0;
+            incY = 50;
+            for (k=0; k<5; k++){
+                hitbox = hitboxes.create(rope.x+incX, rope.y+incY,"grapes");
+                hitbox.scale.setTo(1/4, 1/4);
+                incX += 36;
+                incY -= 12;
+            }
+        
+        }
+
         
     }
 }
@@ -198,6 +212,13 @@ function move_goose(){
         estado = "derecha";
         }
     }
+    else if (fireButton.justDown)
+    {
+        disparo.forEach(moverProjectile, this);
+
+        console.log("Hola");        
+
+}
 
 }
 function updateTime() {
