@@ -1,4 +1,4 @@
-let setting = {
+let Settings = {
     preload: loadsetting,
     create: createsetting,
     update: updatesetting

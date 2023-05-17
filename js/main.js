@@ -7,10 +7,8 @@ window.onload = startGame;
 function startGame() {
     game.state.add('startScreen', startScreen);
     game.state.add('aboutScreen', aboutScreen);
-    game.state.add('setting', setting);
-    game.state.add('stageA', stageA);
-    game.state.add('stageB', stageB);
-    game.state.add('stageC', stageC);
+    game.state.add('Settings', Settings);
+    game.state.add('Play', Play);
     game.state.add('endScreen', endScreen);
     game.state.start('startScreen');
 }

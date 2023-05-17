@@ -19,18 +19,9 @@ function createStartScreen() {
     // add the background image to the screen
     game.add.image(0, 0, "bg");
 
+ 
     // Crea el botón de imagen
-    let facil = game.add.button(100, 200, 'patoA', goToStageA, this, 2, 1, 0);
-
-    // Cambia la posición del botón
-    facil.anchor.setTo(0.5, 0.5);
-    facil.y = 100;
-    facil.x = 200;
-    facil.scale.setTo(0.75);
-
-
-    // Crea el botón de imagen
-    let normal = game.add.button(100, 200, 'patoB', goToStageB, this, 2, 1, 0);
+    let normal = game.add.button(100, 200, 'patoB', goToPlay, this, 2, 1, 0);
 
     // Cambia la posición del botón
     normal.anchor.setTo(0.5, 0.5);
@@ -39,51 +30,32 @@ function createStartScreen() {
     normal.scale.setTo(0.75);
 
 
-    // Crea el botón de imagen
-    let dificil = game.add.button(100, 200, 'patoC', goToStageC, this, 2, 1, 0);
-
-    // Cambia la posición del botón
-    dificil.anchor.setTo(0.5, 0.5);
-    dificil.y = 300;
-    dificil.x = 200;
-    dificil.scale.setTo(0.75);
-
     //Crea el botón de ajustes
-    let setting = game.add.button(100, 200, 'setting', goToSetting, this, 2, 1, 0);
+    let Settings = game.add.button(100, 200, 'setting', goToSettings, this, 2, 1, 0);
 
     //Cambia la posicion del botón
-    setting.anchor.setTo(0.5, 0.5);
-    setting.y = 400;
-    setting.x = 200;
-    setting.scale.setTo(0.15);
+    Settings.anchor.setTo(0.5, 0.5);
+    Settings.y = 400;
+    Settings.x = 200;
+    Settings.scale.setTo(0.15);
 }
 
 function goToAboutScreen() {
     game.state.start('aboutScreen');
 }
 
-function goToStageA() {
-    stage = 'A';
-    //initiateVariablesStart();
-    game.state.start('stageA');
-}
 
-function goToStageB() {
+function goToPlay() {
     stage = 'B';
     //initiateVariablesStart();
-    game.state.start('stageB');
+    game.state.start('Play');
 }
 
-function goToStageC() {
-    stage = 'C';
-    //initiateVariablesStart();
-    game.state.start('stageC');
-}
 
-function goToSetting() {
+function goToSettings() {
     stage = 'S';
     //initiateVariablesStart();
-    game.state.start('setting');
+    game.state.start('Settings');
 }
 
 
