@@ -26,9 +26,6 @@ function collideL(unibread) {
 changeL = true; 
 }
 
-
-
-
 function createBread(nume){
 
 bread = game.add.group();
@@ -91,7 +88,6 @@ for(i=0; i<y; i++){
         rope = ropes.create(diff*woods+98, 40*height, "rightRope"); 
         rope.scale.x = 4/(num);
        
-
         incX = 0;
         incY = -10;
         for (j=0; j<5; j++){
@@ -119,15 +115,13 @@ for(i=0; i<y; i++){
 
 function move_goose(){
 
-//cursors = game.input.keyboard.createCursorKeys();
 
 // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
 
     if (cursors.left.justDown && estado != "disparando") 
     {
         estado = "izquierda";
-        console.log("hdsuhia");
-    //    goose.animations.play('normal');
+    //  goose.animations.play('normal');
         goose.scale.setTo(-1, 1);
 
         if (goose.x > 100)
@@ -158,7 +152,6 @@ function move_goose(){
 
     else if (fireButton.justDown && estado != "disparando")
     {
-        
         goose.kill();
 
         //disparo.forEach(moverProjectile, this);   
@@ -173,7 +166,7 @@ function move_goose(){
         //goose.animations.play('shoot');
     }
 
-//ANADIR TIEMPO ESPERA DISPARO DE NUEVO
+//AÑADIR TIEMPO ESPERA DISPARO DE NUEVO
 
 }
 
@@ -191,8 +184,6 @@ function createShoot(num) {
 
 }
 */
-
-
 
 function shootLaser() {
 
@@ -242,7 +233,6 @@ function createShoot(number) {
 function killMember(item) {
     item.kill();
 }
-
 
 function updateTime() {
     remainingTime = Math.max(0,remainingTime-1);

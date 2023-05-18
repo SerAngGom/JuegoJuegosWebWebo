@@ -14,7 +14,7 @@ function createAbout() {
 
     game.add.image(0, 0, "bg");
 
-    //text describing the game (Ab-out)
+    //text describing the game
     let titleAb = 'GOOSETAVOS BREAD RAGE';
     let style = {
         font: 'Source Sans Pro',
@@ -43,7 +43,7 @@ function createAbout() {
 
     let imgGoose = game.add.image(GAME_AREA_WIDTH/2.5, 300, 'goose');
 
-    //text and images explaining the game (A-bout T-utorial)
+    //Explaining the controles
     let titleAT = 'HOW TO PLAY';
     style = {
         font: 'Source Sans Pro',
@@ -56,7 +56,7 @@ function createAbout() {
 
     let textAT = 'Use the arrows to\n';
     textAT += 'to move Goosetavo.\n';
-    textAT += 'Click space to shoot \n';
+    textAT += 'Press space to shoot \n';
     textAT += 'water to the bread.\n';
 
     style = {
