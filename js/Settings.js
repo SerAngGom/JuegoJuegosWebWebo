@@ -60,7 +60,13 @@ function createsetting() {
     game.add.image(230,170, 'letterdificulty');
     game.add.image(230,330, 'lettercontrol');
 
-    //let select5= game.add.image(336, 90, 'select5');
+    let select3= game.add.image(252, 90, 'select3');
+    let select4= game.add.image(294, 90, 'select4');
+    let select5= game.add.image(336, 90, 'select5');
+    let select6= game.add.image(378, 90, 'select6');
+    let select7= game.add.image(420, 90, 'select7');
+    let select8= game.add.image(462, 90, 'select8');
+    let select9= game.add.image(504, 90, 'select9');
 
     let rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
     let rope4= game.add.button(294, 90, 'rope4');
@@ -75,13 +81,7 @@ function createsetting() {
     let insanemode = game.add.button(560, 250, 'insanemode');
     let mosemode = game.add.button(270, 405, 'mosemode');
     let keyboardmode = game.add.button(400, 405, 'keyboardmode');
-    let select3= game.add.image(252, 90, 'select3');
-    let select4= game.add.image(294, 90, 'select4');
-    let select5= game.add.image(336, 90, 'select5');
-    let select6= game.add.image(378, 90, 'select6');
-    let select7= game.add.image(420, 90, 'select7');
-    let select8= game.add.image(462, 90, 'select8');
-    let select9= game.add.image(504, 90, 'select9');
+
 }
 
 function updatesetting() {
