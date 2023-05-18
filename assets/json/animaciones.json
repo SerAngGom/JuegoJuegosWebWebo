@@ -1,0 +1,21 @@
+{"frames": {
+
+    "goose/normal/0001":
+    {
+        "frame": {"x":0,"y":0,"w":158,"h":316},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":15,"y":3,"w":158,"h":316},
+        "sourceSize": {"w":187,"h":324}
+    },
+
+    "goose/shoot/0001":
+    {
+        "frame": {"x":50,"y":0,"w":158,"h":316},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":15,"y":3,"w":158,"h":316},
+        "sourceSize": {"w":187,"h":324}
+    }
+}
+}

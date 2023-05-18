@@ -127,6 +127,7 @@ function move_goose(){
     {
         estado = "izquierda";
         console.log("hdsuhia");
+    //    goose.animations.play('normal');
         goose.scale.setTo(-1, 1);
 
         if (goose.x > 100)
