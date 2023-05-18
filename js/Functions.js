@@ -126,6 +126,7 @@ function move_goose(){
     if (cursors.left.justDown && estado != "disparando") 
     {
         estado = "izquierda";
+        console.log("hdsuhia");
         goose.scale.setTo(-1, 1);
 
         if (goose.x > 100)
@@ -154,17 +155,17 @@ function move_goose(){
 
 // IF space is pushed, a projectile is shot upwards
 
-    else if (fireButton.justDown)
+    else if (fireButton.justDown && estado != "disparando")
     {
-        estado = "disparando";
+        
         goose.kill();
-        shooting = true;
 
         //disparo.forEach(moverProjectile, this);   
         console.log("Hola"); 
 
-        createShoot();  
+        createShoot();
         shootLaser();    
+        estado = "disparando";
         
         goose = game.add.image(goose.x, goose.y, "shoot");
         goose.anchor.setTo(0.5, 0.5);
@@ -208,21 +209,32 @@ function shootLaser() {
 
 function moverProjectile(chorro){
 
-    chorro.y -= 10;   
+    chorro.y -= 10;
+    if(chorro.y <= 0)
+    {
+        chorro.kill();
+        estado = "null";
+        goose.kill();
+        goose = game.add.image(goose.x, goose.y, "goose");
+        goose.anchor.setTo(0.5, 0.5);
+    }   
 }
 
 
 function createShoot(number) {
     
-    disparo = game.add.group();
-    disparo.enableBody = true;
-    disparo.createMultiple(number, 'projectile');
-
-    game.physics.arcade.enable(disparo);
-
-    disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-    disparo.callAll('anchor.setTo', 'anchor', 0, 0.5);
-    disparo.setAll('checkWorldBounds', true);
+    if(estado != "disparando")
+    {
+        disparo = game.add.group();
+        disparo.enableBody = true;
+        disparo.createMultiple(number, 'projectile');
+    
+        game.physics.arcade.enable(disparo);
+    
+        disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
+        disparo.callAll('anchor.setTo', 'anchor', 0, 0.5);
+        disparo.setAll('checkWorldBounds', true);
+    }
 
 }
 
@@ -239,10 +251,11 @@ function updateTime() {
         }
     }
     
-    function randomNumber(min, max) {
-        max += 1;
-        return Math.floor(Math.random() * (max - min) + min);
-    }
+function randomNumber(min, max) {
+    max += 1;
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
     
     
     
