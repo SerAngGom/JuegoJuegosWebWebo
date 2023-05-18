@@ -7,14 +7,24 @@ let aboutScreen = {
 function preloadAbout() {
     game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('goose', 'assets/imgs/goose.png');
-    game.load.image('back', 'assets/imgs/return.png')
+    game.load.image('back', 'assets/imgs/return.png');
+    game.load.image('fondoarriba','assets/imgs/fondoarriba.png');
+    game.load.image('fondoizquierda', 'assets/imgs/fondoizquierda.png');
+    game.load.image('fondoderecha','assets/imgs/fondoderecha.png');
+
 }
 function createAbout() {
     game.world.removeAll();
 
     game.add.image(0, 0, "bg");
 
+<<<<<<< Updated upstream
     //text describing the game
+=======
+    game.add.image(75, 30, "fondoarriba");
+
+    //text describing the game (Ab-out)
+>>>>>>> Stashed changes
     let titleAb = 'GOOSETAVOS BREAD RAGE';
     let style = {
         font: 'Source Sans Pro',
