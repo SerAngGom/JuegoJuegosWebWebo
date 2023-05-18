@@ -29,16 +29,16 @@ changeL = true;
 
 
 
-function createBread(num){
+function createBread(nume){
 
 bread = game.add.group();
 bread.enableBody = true;
 
-bread.createMultiple(num, "bread",diff*(rand-1)+100, 1);
+bread.createMultiple(nume, "bread",diff*(rand-1)+100, 1);
 game.physics.arcade.enable(bread);
 bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
 bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-bread.callAll('scale.setTo', 'scale', 0.7, 0.7);
+bread.callAll('scale.setTo', 'scale', 1-(num/10), 1-(num/10));
 bread.callAll('enableBody', true);
 
 }
