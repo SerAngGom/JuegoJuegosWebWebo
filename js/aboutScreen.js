@@ -1,3 +1,4 @@
+const GAME_AREA_WIDTH = 800;
 let aboutScreen = {
     preload: preloadAbout,
     create: createAbout
@@ -5,6 +6,7 @@ let aboutScreen = {
 
 function preloadAbout() {
     game.load.image('bg', 'assets/imgs/background.png');
+    game.load.image('goose', 'assets/imgs/goose.png');
 }
 function createAbout() {
     game.world.removeAll();
@@ -16,14 +18,17 @@ function createAbout() {
     let style = {
         font: 'Source Sans Pro',
         fontWeight: '600',
-        fontSize: '40px'
+        fontSize: '40px',
     }
     let mainTitle = game.add.text(0, 0, titleAb, style);
     mainTitle.anchor.setTo(0.5, 0);
     mainTitle.position.setTo(GAME_AREA_WIDTH/2, 50);
 
-    let textAb = 'This game is about learning not to\n';
-    textAb += 'feed bread to ducks.\n';
+    let textAb = 'A game about a goose’s difficulties through life.\n';
+    textAb += 'Did you know that bread is extremely prudish to a duck’s digestive system?\n';
+    textAb += 'Goosetavo is very tired of people throwing bread crumbs to him at the lake \n';
+    textAb += 'and has started fighting back. But he loves it when people feed him grapes! \n';
+    textAb += 'Also beware of any catfish, predatory fish of the lake. \n';
 
     style = {
         font: 'Source Sans Pro',
@@ -35,7 +40,7 @@ function createAbout() {
     introduction.anchor.setTo(0.5, 0);
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
-    let imgDuck = game.add.image(GAME_AREA_WIDTH/2, 200, 'duck');
+    let imgGoose = game.add.image(GAME_AREA_WIDTH/2.5, 300, 'goose');
     imgDuck.anchor.setTo(0.5, 0);
 
 
