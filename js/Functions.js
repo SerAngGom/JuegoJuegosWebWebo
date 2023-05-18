@@ -15,6 +15,7 @@ function moveBread(unibread) {
         unibread.y += speed;  
     }
     else  unibread.y += speed;
+    
 }
 
 function collideR(unibread) {
@@ -31,9 +32,7 @@ changeL = true;
 function createBread(num){
 
 bread = game.add.group();
-game.physics.arcade.enable(bread);
 bread.enableBody = true;
-
 
 bread.createMultiple(num, "bread",diff*(rand-1)+100, 1);
 game.physics.arcade.enable(bread);
@@ -44,9 +43,9 @@ bread.callAll('enableBody', true);
 
 }
 
-function resetMember(bread){
-bread.x = 0;
-bread.y = 0;
+function resetMember(item){
+item.x = 0;
+item.y = 0;
 
 }
 
@@ -56,7 +55,6 @@ function timerEvent(){                       //Bread will fall depending on a ti
 
     let unibread = bread.getFirstExists();
     unibread.reset(0, 0);
-    
 }
 
 
@@ -121,43 +119,65 @@ for(i=0; i<y; i++){
 
 function move_goose(){
 
-cursors = game.input.keyboard.createCursorKeys();
+//cursors = game.input.keyboard.createCursorKeys();
 
 // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
 
-if (cursors.left.justDown) 
-{
-    if (goose.x > 100){
-    goose.x -= diff;
-    if (estado == "derecha") goose.scale.setTo(-1, 1);
-    estado = "izquierda";
+    if (cursors.left.justDown) 
+    {
+        estado = "izquierda";
+        goose.scale.setTo(-1, 1);
+
+        if (goose.x > 100)
+        {
+            goose.x -= diff;
+        }
+
+        //goose.animations.play('walk');
     }
-}
 
 // IF right arrow pushed, goose moves to the right, unless he's at the utmost right
 
     else if (cursors.right.justDown) 
     {
-        if (goose.x != diff*(num-1)+100){
-        goose.x += diff;
-        if (estado == "izquierda") goose.scale.setTo(1, 1);
         estado = "derecha";
+        goose.scale.setTo(1, 1);
+
+        if (goose.x != diff*(num-1)+100)
+        {
+            goose.x += diff;
         }
+        //goose.animations.play('walk');
     }
+
 
 // IF space is pushed, a projectile is shot upwards
 
     else if (fireButton.justDown)
     {
-        //disparo.forEach(moverProjectile, this);
-         
-        console.log("Hola");    
-        shootLaser();      
+        goose.kill();
+        shooting = true;
 
+        //disparo.forEach(moverProjectile, this);   
+        console.log("Hola"); 
+
+        createShoot();  
+        shootLaser();    
+        
+        goose = game.add.image(goose.x, goose.y, "shoot");
+
+        //goose.animations.play('shoot');
+    }
+
+//ANADIR TIEMPO ESPERA DISPARO DE NUEVO
+    if(shooting == false)
+    {
+        goose.kill();
+        goose = game.add.image(goose.x, goose.y, "goose");
     }
 }
 
-
+/*
 function createShoot(num) {
 
     disparo = game.add.group();
@@ -170,31 +190,34 @@ function createShoot(num) {
     disparo.callAll('enableBody', true);
 
 }
+*/
 
 
 
 function shootLaser() {
 
+    disparo = game.add.image(goose.x, goose.y - 100, "projectile");
+
+    /*
     let shot = disparo.getFirstExists(false);
+    
     if (shot) {
         shot.reset(x, y);
         shot.body.velocity.y = speed;
-    }
+    }*/
 }
-    
+       
 
-function moverProjectile(chorro){   
-    chorro.x = goose.x;
-    y -= 1;
+function moverProjectile(chorro){
 
-        if (goose.x != diff*(num-1)+100){
-        goose.x += diff;
-        }
-        if (estado == "izquierda") {goose.scale.setTo(1, 1);
+    chorro.y -= 10;
+
+    if (estado == "izquierda") 
+    {
+        chorro.scale.setTo(1, 1);
         estado = "derecha";
-        }
+    }
 
-        createShoot(3);
     
 }
 
@@ -203,14 +226,14 @@ function createShoot(number) {
     
     disparo = game.add.group();
     disparo.enableBody = true;
-    disparo.createMultiple(number, 'shoot');
-    disparo.callAll('events.onOutOfBounds.add',
-    'events.onOutOfBounds', killMember);
-    disparo.callAll(
-    'anchor.setTo', 'anchor', 0.5, 1.0);
+    disparo.createMultiple(number, 'projectile');
+
+    game.physics.arcade.enable(disparo);
+
+    disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
+    disparo.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     disparo.setAll('checkWorldBounds', true);
 
-    disparo = game.add.image(goose.x, goose.y - 100, "projectile");
 }
 
 function killMember(item) {
