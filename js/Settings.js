@@ -27,6 +27,19 @@ function loadsetting() {
     game.load.image('insanemode','assets/imgs/insanemode.png');
     game.load.image('mosemode','assets/imgs/mosemode.png');
     game.load.image('keyboardmode','assets/imgs/keyboardmode.png');
+    game.load.image('select3','assets/imgs/3select.png');
+    game.load.image('select4','assets/imgs/4select.png');
+    game.load.image('select5','assets/imgs/5select.png');
+    game.load.image('select6','assets/imgs/6select.png');
+    game.load.image('select7','assets/imgs/7select.png');
+    game.load.image('select8','assets/imgs/8select.png');
+    game.load.image('select9','assets/imgs/9select.png');
+    game.load.image('easyelect','assets/imgs/easyselect.png');
+    game.load.image('normalelect','assets/imgs/normalselect.png');
+    game.load.image('hardelect','assets/imgs/hardselect.png');
+    game.load.image('insaneelect','assets/imgs/insaneselect.png');
+    game.load.image('moseselect','assets/imgs/moseselect.png');
+    game.load.image('keyboardselect','assets/imgs/keyboardselect.png');
 }
 
 function createsetting() {
@@ -47,7 +60,9 @@ function createsetting() {
     game.add.image(230,170, 'letterdificulty');
     game.add.image(230,330, 'lettercontrol');
 
-    let rope3= game.add.button(252, 90, 'rope3');
+    //let select5= game.add.image(336, 90, 'select5');
+
+    let rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
     let rope4= game.add.button(294, 90, 'rope4');
     let rope5= game.add.button(336, 90, 'rope5');
     let rope6= game.add.button(378, 90, 'rope6');
@@ -60,13 +75,16 @@ function createsetting() {
     let insanemode = game.add.button(560, 250, 'insanemode');
     let mosemode = game.add.button(270, 405, 'mosemode');
     let keyboardmode = game.add.button(400, 405, 'keyboardmode');
+    let select3= game.add.image(252, 90, 'select3');
+    let select4= game.add.image(294, 90, 'select4');
+    let select5= game.add.image(336, 90, 'select5');
+    let select6= game.add.image(378, 90, 'select6');
+    let select7= game.add.image(420, 90, 'select7');
+    let select8= game.add.image(462, 90, 'select8');
+    let select9= game.add.image(504, 90, 'select9');
 }
 
 function updatesetting() {
-
-
-
-
     //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
 }
 
@@ -74,7 +92,10 @@ function goToStartScreen() {
     game.state.start('startScreen');
 }
 
-function numberRopes() {
-    let nRopes = 5;
-    
+function onClickrope3() {
+    rope3.kill();
+    game.add.image(252, 90, 'select3');
+
 }
+
+
