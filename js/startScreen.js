@@ -25,10 +25,9 @@ function createStartScreen() {
     let normal = game.add.button(100, 200, 'patoB', goToPlay, this, 2, 1, 0);
 
     // Cambia la posición del botón
-    normal.anchor.setTo(0.5, 0.5);
-    normal.y = 200;
-    normal.x = 200;
-    normal.scale.setTo(0.75);
+    normal.anchor.setTo(0, 0.5);
+    normal.y = 275;
+    normal.x = 0;
 
 
     //Crea el botón de ajustes
@@ -36,18 +35,16 @@ function createStartScreen() {
 
     //Cambia la posicion del botón
     Settings.anchor.setTo(0.5, 0.5);
-    Settings.y = 400;
-    Settings.x = 200;
-    Settings.scale.setTo(0.15);
+    Settings.y = 40;
+    Settings.x = 755;
 
     //Crea el botón de ajustes
     let aboutScreen = game.add.button(100, 200, 'aboutScreen', goToaboutScreen, this, 2, 1, 0);
 
     //Cambia la posicion del botón
     aboutScreen.anchor.setTo(0.5, 0.5);
-    aboutScreen.y = 400;
-    aboutScreen.x = 400;
-    aboutScreen.scale.setTo(0.5);
+    aboutScreen.y = 40;
+    aboutScreen.x = 675;
 }
 
 function goToAboutScreen() {

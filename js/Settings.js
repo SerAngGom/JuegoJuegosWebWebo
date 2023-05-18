@@ -52,9 +52,8 @@ function createsetting() {
 
     // Cambia la posición del botón
     b_return.anchor.setTo(0.5, 0.5);
-    b_return.y = 30;
-    b_return.x = 30;
-    b_return.scale.setTo(0.1);
+    b_return.y = 40;
+    b_return.x = 40;
 
     game.add.image(230,20, 'letterrope');
     game.add.image(230,170, 'letterdificulty');
