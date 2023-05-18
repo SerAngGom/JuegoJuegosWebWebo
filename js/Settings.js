@@ -3,7 +3,7 @@ let Settings = {
     create: createsetting,
     update: updatesetting
 }
-
+let n_rope=4;
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
@@ -84,7 +84,7 @@ function createsetting() {
     invisible=rope4;
 
 }
-var n_rope =4;
+
 
 var rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
 var rope4= game.add.button(294, 90, 'rope4', onClickrope4, this);

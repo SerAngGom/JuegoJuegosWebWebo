@@ -18,13 +18,11 @@ function createAbout() {
 
     game.add.image(0, 0, "bg");
 
-<<<<<<< Updated upstream
-    //text describing the game
-=======
     game.add.image(75, 30, "fondoarriba");
+    game.add.image(30,240, "fondoizquierda");
+    game.add.image(485    ,240, "fondoderecha");
 
-    //text describing the game (Ab-out)
->>>>>>> Stashed changes
+
     let titleAb = 'GOOSETAVOS BREAD RAGE';
     let style = {
         font: 'Source Sans Pro',
@@ -79,7 +77,7 @@ function createAbout() {
     tutorial.anchor.setTo(0.5, 0);
     tutorial.position.setTo(GAME_AREA_WIDTH/5, 300);
 
-    let textDE = 'DEPEVOLPERS';
+    let textDE = 'DEVELOPERS';
 
     style = {
         font: 'Source Sans Pro',
