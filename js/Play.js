@@ -61,10 +61,10 @@ function createPlay() {
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    //goose = game.add.sprite(0, 180, 'animacionGoose', 'goose/shoot/0001');
+    //goose = game.add.sprite(0, 180, 'animaciones', 'goose/shoot/0001');
     //goose.animations.add('shoot', Phaser.Animation.generateFrameNames('goose/shoot/0001', 1, '', 4), 10, true, false);
 
-    //goose = game.add.sprite(0, 180, 'animacionGoose', 'goose/normal/0001');
+    //goose = game.add.sprite(0, 180, 'animaciones', 'goose/normal/0001', );
     //goose.animations.add('walk', Phaser.Animation.generateFrameNames('goose/normal/0001', 1, '', 4), 10, true, false);
     
     timerClock = game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);

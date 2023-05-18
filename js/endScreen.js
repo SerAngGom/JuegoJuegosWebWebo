@@ -5,12 +5,12 @@ let endScreen = {
 
 function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
-    game.load.image('start', 'assets/imgs/start.png');
+    game.load.image('start', 'assets/imgs/return.png');
 }
 
 function createEndScreen() {
 
-    game.add.image(-1, -1, "bg");
+    game.add.image(0, 0, "bg");
 
     let infoText;
 
