@@ -10,7 +10,8 @@ function loadStartScreen() {
     game.load.image('patoA', 'assets/imgs/patoA.png');
     game.load.image('patoB', 'assets/imgs/patoB.png');
     game.load.image('patoC', 'assets/imgs/patoC.png');
-    game.load.image('setting', 'assets/imgs/setting.png')
+    game.load.image('setting', 'assets/imgs/setting.png');
+    game.load.image('aboutScreen', 'assets/imgs/aboutScreen.png');
 }
 
 function createStartScreen() {
