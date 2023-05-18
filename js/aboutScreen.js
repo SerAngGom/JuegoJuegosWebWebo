@@ -7,6 +7,7 @@ let aboutScreen = {
 function preloadAbout() {
     game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('goose', 'assets/imgs/goose.png');
+    game.load.image('back', 'assets/imgs/return.png')
 }
 function createAbout() {
     game.world.removeAll();
@@ -41,8 +42,6 @@ function createAbout() {
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
     let imgGoose = game.add.image(GAME_AREA_WIDTH/2.5, 300, 'goose');
-    imgDuck.anchor.setTo(0.5, 0);
-
 
     //text and images explaining the game (A-bout T-utorial)
     let titleAT = 'HOW TO PLAY';
@@ -53,10 +52,12 @@ function createAbout() {
     }
     let titleTutorial = game.add.text(0, 0, titleAT, style);
     titleTutorial.anchor.setTo(0.5, 0);
-    titleTutorial.position.setTo(GAME_AREA_WIDTH/2, 320);
+    titleTutorial.position.setTo(GAME_AREA_WIDTH/5, 250);
 
-    let textAT = 'Get to the right position to shoot the bread.\n';
-    textAT += 'Then, click or press space to shoot at it!\n';
+    let textAT = 'Use the arrows to\n';
+    textAT += 'to move Goosetavo.\n';
+    textAT += 'Click space to shoot \n';
+    textAT += 'water to the bread.\n';
 
     style = {
         font: 'Source Sans Pro',
@@ -66,7 +67,34 @@ function createAbout() {
     }
     let tutorial = game.add.text(0, 0, textAT, style);
     tutorial.anchor.setTo(0.5, 0);
-    tutorial.position.setTo(GAME_AREA_WIDTH/2, 365);
+    tutorial.position.setTo(GAME_AREA_WIDTH/5, 300);
+
+    let textDE = 'DEPEVOLPERS';
+
+    style = {
+        font: 'Source Sans Pro',
+        fontWeight: '600',
+        fontSize: '30px',
+        align: 'center'
+    }
+    let titledevelopers = game.add.text(0, 0, textDE, style);
+    titledevelopers.anchor.setTo(0.5, 0);
+    titledevelopers.position.setTo(GAME_AREA_WIDTH/1.3, 250);
+
+    let textNA = 'Sara Berlanga Aramburu\n';
+    textNA += 'Pere Mengual Roca\n';
+    textNA += 'Sergio Angulo Gómez';
+
+
+    style = {
+        font: 'Source Sans Pro',
+        fontWeight: '400',
+        fontSize: '20px',
+        align: 'center'
+    }
+    let names = game.add.text(0, 0, textNA, style);
+    names.anchor.setTo(0.5, 0);
+    names.position.setTo(GAME_AREA_WIDTH/1.3, 300);
 
 
     //button for showing credits
