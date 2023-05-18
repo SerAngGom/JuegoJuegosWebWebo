@@ -123,7 +123,7 @@ function move_goose(){
 
 // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
 
-    if (cursors.left.justDown) 
+    if (cursors.left.justDown && estado != "disparando") 
     {
         estado = "izquierda";
         goose.scale.setTo(-1, 1);
@@ -138,15 +138,16 @@ function move_goose(){
 
 // IF right arrow pushed, goose moves to the right, unless he's at the utmost right
 
-    else if (cursors.right.justDown) 
+    if (cursors.right.justDown && estado != "disparando") 
     {
         estado = "derecha";
         goose.scale.setTo(1, 1);
 
-        if (goose.x != diff*(num-1)+100)
+        if (goose.x < diff*(num-1))
         {
             goose.x += diff;
         }
+
         //goose.animations.play('walk');
     }
 
@@ -155,6 +156,7 @@ function move_goose(){
 
     else if (fireButton.justDown)
     {
+        estado = "disparando";
         goose.kill();
         shooting = true;
 
@@ -165,16 +167,12 @@ function move_goose(){
         shootLaser();    
         
         goose = game.add.image(goose.x, goose.y, "shoot");
-
+        goose.anchor.setTo(0.5, 0.5);
         //goose.animations.play('shoot');
     }
 
 //ANADIR TIEMPO ESPERA DISPARO DE NUEVO
-    if(shooting == false)
-    {
-        goose.kill();
-        goose = game.add.image(goose.x, goose.y, "goose");
-    }
+
 }
 
 /*
@@ -196,7 +194,7 @@ function createShoot(num) {
 
 function shootLaser() {
 
-    disparo = game.add.image(goose.x, goose.y - 100, "projectile");
+    disparo = game.add.image(goose.x, goose.y, "projectile");
 
     /*
     let shot = disparo.getFirstExists(false);
@@ -210,15 +208,7 @@ function shootLaser() {
 
 function moverProjectile(chorro){
 
-    chorro.y -= 10;
-
-    if (estado == "izquierda") 
-    {
-        chorro.scale.setTo(1, 1);
-        estado = "derecha";
-    }
-
-    
+    chorro.y -= 10;   
 }
 
 
@@ -231,7 +221,7 @@ function createShoot(number) {
     game.physics.arcade.enable(disparo);
 
     disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-    disparo.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
+    disparo.callAll('anchor.setTo', 'anchor', 0, 0.5);
     disparo.setAll('checkWorldBounds', true);
 
 }
