@@ -25,11 +25,11 @@ let hitboxesL;
 let hitboxesR;
 
 let remainingTime;
-
+let shootTime;
 let num = 4;                                //number of sticks (will be defined in the settings menu)
 let diff = 700/num;                         //distance between sticks depends on how many there are
 let rand = randomNumber(1, num);            //Bread falls on a random stick
-let estado = "derecha";                     //The duck flips and is defaulted to looking right
+let estado = "null";                     //The duck flips and is defaulted to looking right
 let speed = 1;
 let disparo;
                
@@ -72,7 +72,7 @@ function createPlay() {
     create_wood(num);
     generate_ropes(diff*rand, 5);
     createBread(numBread);
-    goose = game.add.image(100, 400, "goose");
+    goose = game.add.image(80, 425, "goose");
     goose.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(goose);
     goose.enableBody = true;

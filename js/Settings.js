@@ -81,11 +81,11 @@ function createsetting() {
     let insanemode = game.add.button(560, 250, 'insanemode');
     let mosemode = game.add.button(270, 405, 'mosemode');
     let keyboardmode = game.add.button(400, 405, 'keyboardmode');
-    rope5.visible=false;
-    invisible=rope5;
+    rope4.visible=false;
+    invisible=rope4;
 
 }
-var n_rope =5;
+var n_rope =4;
 
 var rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
 var rope4= game.add.button(294, 90, 'rope4', onClickrope4, this);
