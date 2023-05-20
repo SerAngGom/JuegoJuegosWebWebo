@@ -19,46 +19,105 @@ function moveBread(unibread) {
 }
 
 function collideR(unibread) {
-changeR = true;
+//changeR = true;
+unibread.x += speed*2;
 }
 
 function collideL(unibread) {
-changeL = true; 
+//changeL = true; 
+unibread.x -= speed*2;
+}
+function explode(enemy, blast){
+
+    x = game.add.image(enemy.x -60, enemy.y - 40, "splash");
+    game.time.events.add(Phaser.Timer.SECOND*0.2, destroyX, this);
+    enemy.kill();
+    blast.kill();    
 }
 
-function createBread(nume){
+function destroyX(blast){
+    x.visible = false;
+    x.kill();
+}
 
-bread = game.add.group();
-bread.enableBody = true;
+function createBread(){
 
-bread.createMultiple(nume, "bread",diff*(rand-1)+100, 1);
-game.physics.arcade.enable(bread);
-bread.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-bread.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-bread.callAll('scale.setTo', 'scale', 1-(num/10), 1-(num/10));
-bread.callAll('enableBody', true);
+rand = randomNumber(1, num);
+let unibread = bread.create(diff*(rand-1)+100, 1, "bread");
+game.physics.arcade.enable(unibread);
+unibread.events.onOutOfBounds.add(resetMember);
+unibread.anchor.setTo(0.5, 0.5);
+unibread.scale.setTo(4/(num+5), 4/(num+5));
+unibread.enableBody = true;
 
 }
+
+function createGrapes(){
+
+    rand = randomNumber(1, num);
+    let unigrape = grapes.create(diff*(rand-1)+100, 1, "grapes");
+    game.physics.arcade.enable(unigrape);
+    unigrape.events.onOutOfBounds.add(resetMember);
+    unigrape.anchor.setTo(0.5, 0.5);
+    unigrape.scale.setTo(4/(num+5), 4/(num+5));
+    unigrape.enableBody = true;
+    
+    }
+    
 
 function resetMember(item){
 item.x = 0;
 item.y = 0;
 
 }
+function createGoose(x, y){    
+goose = game.add.image(x, y, "goose");
+goose.anchor.setTo(0.5, 0.5);
+game.physics.arcade.enable(goose);
+goose.enableBody = true;
 
-
-
-function timerEvent(){                       //Bread will fall depending on a timer
-
-    let unibread = bread.getFirstExists();
-    unibread.reset(0, 0);
 }
 
+function createLives(){
+   l1 = game.add.image(20, 20, "fullheart");
+   l2 = game.add.image(20, 70, "fullheart");
+   l3 = game.add.image(20, 120, "fullheart");
+}
 
+function loseLife(bread){
+    
+    if (lives == 3){
+        l3 = game.add.image(20, 120, "emptyheart");
+    
+    }
+    else if (lives == 2){
+        l2 = game.add.image(20, 70, "emptyheart");
+    }
+    else if (lives == 1){
+        l1 = game.add.image(20, 20, "emptyheart"); //perdería ya pero bueno
+    }
+    lives -= 1;
+    bread.kill();
 
-function create_wood(x){                            //Creates x amounts of sticks
+}
 
-for(i=0; i<x+1; i++){
+function gainLife(grapes){
+    
+     if (lives == 2){
+        l3 = game.add.image(20, 70, "fullheart");
+    }
+    else if (lives == 1){
+        l2 = game.add.image(20, 20, "fullheart"); //perdería ya pero bueno
+    }
+    lives += 1;
+    grapes.kill();
+
+}
+
+function create_wood(){                            //Creates x amounts of sticks
+
+for(i=0; i<=num; i++){
+    diff = 700/num; 
     let wood = game.add.image(diff*i+100, 0, "wood");        
     }  
 }
@@ -66,17 +125,17 @@ for(i=0; i<x+1; i++){
 
 function generate_ropes(x, y){
                                   //y is the amount of ropes, depends on difficulty
-ropes = game.add.group();
-game.physics.arcade.enable(ropes);
-ropes.enableBody = true;
+    ropes = game.add.group();
+    game.physics.arcade.enable(ropes);
+    ropes.enableBody = true;
 
-hitboxesR = game.add.group();
-game.physics.arcade.enable(hitboxesR);
-hitboxesR.enableBody = true;
+    hitboxesR = game.add.group();
+    game.physics.arcade.enable(hitboxesR);
+    hitboxesR.enableBody = true;
 
-hitboxesL = game.add.group();
-game.physics.arcade.enable(hitboxesL);
-hitboxesL.enableBody = true;
+    hitboxesL = game.add.group();
+    game.physics.arcade.enable(hitboxesL);
+    hitboxesL.enableBody = true;
 
 for(i=0; i<y; i++){
 
@@ -86,26 +145,26 @@ for(i=0; i<y; i++){
     
     if (side == 1){
         rope = ropes.create(diff*woods+98, 40*height, "rightRope"); 
-        rope.scale.x = 4/(num);
+        rope.scale.x = 4/num;
        
         incX = 0;
         incY = -10;
         for (j=0; j<5; j++){
-            hitbox = hitboxesR.create(rope.x+incX, rope.y+incY, null);
-            hitbox.scale.setTo(1/4, 1/4);
+            hitbox = hitboxesR.create(rope.x+incX, rope.y+incY,null);
+            hitbox.scale.setTo(4/(num+12), 4/(num+12));
             incX += 36*(4/num);
             incY += 12;
         }
     }     
     else { 
         rope = ropes.create(diff*woods+98, 40*height, "leftRope");
-        rope.scale.x =  4/(num);
+        rope.scale.x =  4/num;
 
         incX = 30*(4/num);
         incY = 50;
         for (k=0; k<5; k++){
             hitbox = hitboxesL.create(rope.x+incX, rope.y+incY, null);
-            hitbox.scale.setTo(1/4, 1/4);
+            hitbox.scale.setTo(4/(num+12), 4/(num+12));
             incX += 36*(4/num);
             incY -= 12;
             }
@@ -115,89 +174,69 @@ for(i=0; i<y; i++){
 
 function move_goose(){
 
-
 // IF left arrow pushed, goose moves to the left, unless he's at the utmost left
 
     if (cursors.left.justDown && estado != "disparando") 
     {
+        goose.kill();
+        createGoose(goose.x, goose.y);
+
         estado = "izquierda";
-    //  goose.animations.play('normal');
+
         goose.scale.setTo(-1, 1);
 
         if (goose.x > 100)
         {
             goose.x -= diff;
+            
         }
-
-        //goose.animations.play('walk');
     }
 
 // IF right arrow pushed, goose moves to the right, unless he's at the utmost right
 
     if (cursors.right.justDown && estado != "disparando") 
     {
+        goose.kill();
+        createGoose(goose.x, goose.y);
+
         estado = "derecha";
         goose.scale.setTo(1, 1);
 
-        if (goose.x < diff*(num-1))
-        {
-            goose.x += diff;
+        if (num != 9) {
+
+            if (goose.x < diff*(num-1))
+            {
+                goose.x += diff;
+              
+            }
         }
-
-        //goose.animations.play('walk');
+        else {
+            if (goose.x < diff*(num))
+            {
+                goose.x += diff;
+             
+            }
+        }
+      
     }
-
 
 // IF space is pushed, a projectile is shot upwards
 
     else if (fireButton.justDown && estado != "disparando")
     {
         goose.kill();
-
-        //disparo.forEach(moverProjectile, this);   
-        console.log("Hola"); 
-
-        createShoot();
-        shootLaser();    
-        estado = "disparando";
-        
         goose = game.add.image(goose.x, goose.y, "shoot");
         goose.anchor.setTo(0.5, 0.5);
-        //goose.animations.play('shoot');
+        game.physics.arcade.enable(goose);
+        goose.enableBody = true;
+
+        createShoot();
+   
+        estado = "disparando";
+
     }
 
-//AÑADIR TIEMPO ESPERA DISPARO DE NUEVO
-
 }
-
-/*
-function createShoot(num) {
-
-    disparo = game.add.group();
-    game.physics.arcade.enable(disparo);
-    disparo.enableBody = true;
-
-    disparo.createMultiple(num, 'projectile', goose.x, goose.y);
-    disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', killMember);
-    disparo.callAll('anchor.setTo', 'anchor', 0.5, 0.5);
-    disparo.callAll('enableBody', true);
-
-}
-*/
-
-function shootLaser() {
-
-    disparo = game.add.image(goose.x, goose.y, "projectile");
-
-    /*
-    let shot = disparo.getFirstExists(false);
-    
-    if (shot) {
-        shot.reset(x, y);
-        shot.body.velocity.y = speed;
-    }*/
-}
-       
 
 function moverProjectile(chorro){
 
@@ -206,26 +245,20 @@ function moverProjectile(chorro){
     {
         chorro.kill();
         estado = "null";
-        goose.kill();
-        goose = game.add.image(goose.x, goose.y, "goose");
-        goose.anchor.setTo(0.5, 0.5);
     }   
 }
 
 
-function createShoot(number) {
+function createShoot() {
     
     if(estado != "disparando")
     {
-        disparo = game.add.group();
-        disparo.enableBody = true;
-        disparo.createMultiple(number, 'projectile');
+        shot = disparo.create(goose.x, goose.y, 'projectile');
+        game.physics.arcade.enable(shot);
     
-        game.physics.arcade.enable(disparo);
-    
-        disparo.callAll('events.onOutOfBounds.add','events.onOutOfBounds', resetMember);
-        disparo.callAll('anchor.setTo', 'anchor', 0, 0.5);
-        disparo.setAll('checkWorldBounds', true);
+        shot.events.onOutOfBounds.add(resetMember);
+        shot.anchor.setTo(0, 0.5);
+        shot.checkWorldBounds = true;
     }
 
 }

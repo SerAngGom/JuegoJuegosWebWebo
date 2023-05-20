@@ -9,7 +9,9 @@ let Play = {
 //————————————————————————————————————————————————————————————
 
 let bread;
-let numBread = 1;
+let unibread;
+let x; 
+
 let wood;
 let grapes;
 let fireButton;
@@ -27,13 +29,19 @@ let hitboxesR;
 let remainingTime;
 let shootTime;
 
-let num = 4;
-//num = n_rope;                                //number of sticks (will be defined in the settings menu)
+let lives = 3;
+let l1;
+let l2;
+let l3;
+
+let num = 4;                               //number of sticks (will be defined in the settings menu)
 let diff = 700/num;                         //distance between sticks depends on how many there are
 let rand = randomNumber(1, num);            //Bread falls on a random stick
 let estado = "null";                     //The duck flips and is defaulted to looking right
 let speed = 1;
+
 let disparo;
+let shot;
 
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE-------------------------------
@@ -52,65 +60,71 @@ function loadPlay() {
     game.load.image('shoot', 'assets/imgs/shoot.png');
     game.load.image('projectile', 'assets/imgs/projectile.png');
     game.load.image('splash', 'assets/imgs/explosion.png');
+    game.load.image('fullheart', 'assets/imgs/corple.png');
+    game.load.image('emptyheart', 'assets/imgs/corbuit.png');
 
 }
 
 function createPlay() {
 
-    //LO HE PUESTO AQUI PARA QUE NO SE CREE CADA VEZ QUE SE LLAME A LA FUNCION mover_goose
-    cursors = game.input.keyboard.createCursorKeys();
-
     // set the background image
     game.add.image( 0, 0, "bg");
 
-    //goose = game.add.sprite(0, 180, 'animaciones', 'goose/shoot/0001');
-    //goose.animations.add('shoot', Phaser.Animation.generateFrameNames('goose/shoot/0001', 1, '', 4), 10, true, false);
-
-    //goose = game.add.sprite(0, 180, 'animaciones', 'goose/normal/0001', );
-    //goose.animations.add('walk', Phaser.Animation.generateFrameNames('goose/normal/0001', 1, '', 4), 10, true, false);
-
     timerClock = game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
-    create_wood(num);
+    create_wood();
     generate_ropes(diff*rand, 5);
-    createBread(numBread);
-    goose = game.add.image(80, 425, "goose");
-    goose.anchor.setTo(0.5, 0.5);
+    
+    bread = game.add.group();
+    bread.enableBody = true;
+    createBread();
+
+    grapes= game.add.group();
+    grapes.enableBody = true;
+    createGrapes();
+
+    createLives();
+
+    disparo = game.add.group();
+    disparo.enableBody = true;
+
+    createSplash = game.add.group();
+    createSplash.enableBody = true;
+
+    createGoose(80, 425);
     game.physics.arcade.enable(goose);
     goose.enableBody = true;
-    createShoot(5);
 
     cursors = game.input.keyboard.createCursorKeys();
-
-    game.time.events.loop(Phaser.Timer.SECOND*10, timerEvent, this);
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    bread.x =  diff*(rand-1)+100;
-    disparo.x =  goose.x;
 
+
+    game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
+    game.time.events.loop(Phaser.Timer.SECOND*8, createGrapes, this);
 }
 
 
 function updatePlay() {
-
+    
     game.physics.arcade.overlap(bread, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
-    game.physics.arcade.overlap(bread, disparo, collideR, null, this);
-    game.physics.arcade.overlap(bread, disparo, collideL, null, this);
+    game.physics.arcade.overlap(bread, disparo, explode, null, this);
+    game.physics.arcade.collide(bread, goose, loseLife, null, this);
+
+    game.physics.arcade.overlap(grapes, hitboxesL, collideL, null, this);
+    game.physics.arcade.overlap(grapes, hitboxesR, collideR, null, this);
+    game.physics.arcade.overlap(grapes, disparo, explode, null, this);
+    game.physics.arcade.overlap(grapes, goose, gainLife, null, this);
 
     bread.forEach(moveBread, this);
-    //disparo.forEach(moverProjectile, this);
+    grapes.forEach(moveBread, this);
+    disparo.forEach(moverProjectile, this);
 
     changeR = false;
     changeL = false;
 
     move_goose();
 
-    //AL PONERLE EL FOREGROUND VA MAS LENTO EL JUEGO POCO A POCO
-    //CREO QUE ES PORQUE SE SOBREPONE CADA VEZ QUE SE HACE UN UPDATE
-    //game.add.image(0, 0, "foreground");
-
-    moveBread(1, true);
-    moverProjectile(disparo);
 }
 
 

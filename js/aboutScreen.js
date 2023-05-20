@@ -1,4 +1,5 @@
 const GAME_AREA_WIDTH = 800;
+
 let aboutScreen = {
     preload: preloadAbout,
     create: createAbout

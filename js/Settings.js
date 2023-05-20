@@ -96,6 +96,7 @@ var rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
 var invisible;
 function updatesetting() {
     //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
+    num = n_rope;
 }
 
 function goToStartScreen() {
