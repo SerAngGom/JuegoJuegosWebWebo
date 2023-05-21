@@ -97,23 +97,27 @@ function loseLife(bread){
     }
     else if (lives == 1){
         l1 = game.add.image(20, 20, "emptyheart"); //perdería ya pero bueno
+        lives -= 1;
+
     }
     bread.kill();
-
+    console.log(lives);
 }
 
 function gainLife(grapes){
     
      if (lives == 2){
+        l3.kill();
         l3 = game.add.image(20, 70, "fullheart");
         lives += 1;
     }
     else if (lives == 1){
+        l2.kill();
         l2 = game.add.image(20, 20, "fullheart"); 
         lives += 1;
     }
     grapes.kill();
-
+    console.log(lives);
 }
 
 function create_wood(){                            //Creates x amounts of sticks

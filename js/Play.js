@@ -82,7 +82,6 @@ function createPlay() {
 
     grapes= game.add.group();
     grapes.enableBody = true;
-    createGrapes();
 
     createLives();
 
@@ -103,7 +102,7 @@ function createPlay() {
 
 
     game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
-    game.time.events.loop(Phaser.Timer.SECOND*8, createGrapes, this);
+    game.time.events.loop(Phaser.Timer.SECOND*8.5, createGrapes, this);
 }
 
 
