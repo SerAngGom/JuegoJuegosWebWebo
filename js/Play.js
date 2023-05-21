@@ -16,6 +16,7 @@ let wood;
 let grapes;
 let fireButton;
 let goose;
+let gooseG;
 
 let shooting = false;
 
@@ -91,9 +92,11 @@ function createPlay() {
     createSplash = game.add.group();
     createSplash.enableBody = true;
 
+    gooseG = game.add.group();
     createGoose(80, 425);
-    game.physics.arcade.enable(goose);
-    goose.enableBody = true;
+    game.physics.arcade.enable(gooseG);
+    gooseG.enableBody = true;
+
 
     cursors = game.input.keyboard.createCursorKeys();
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -109,12 +112,12 @@ function updatePlay() {
     game.physics.arcade.overlap(bread, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(bread, disparo, explode, null, this);
-    game.physics.arcade.collide(bread, goose, loseLife, null, this);
+    game.physics.arcade.collide(bread, gooseG, loseLife, null, this);
 
     game.physics.arcade.overlap(grapes, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(grapes, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(grapes, disparo, explode, null, this);
-    game.physics.arcade.overlap(grapes, goose, gainLife, null, this);
+    game.physics.arcade.overlap(grapes, gooseG, gainLife, null, this);
 
     bread.forEach(moveBread, this);
     grapes.forEach(moveBread, this);

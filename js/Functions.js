@@ -71,7 +71,7 @@ item.y = 0;
 
 }
 function createGoose(x, y){    
-goose = game.add.image(x, y, "goose");
+goose = gooseG.create(x, y, "goose");
 goose.anchor.setTo(0.5, 0.5);
 game.physics.arcade.enable(goose);
 goose.enableBody = true;
@@ -88,15 +88,16 @@ function loseLife(bread){
     
     if (lives == 3){
         l3 = game.add.image(20, 120, "emptyheart");
+        lives -= 1;
     
     }
     else if (lives == 2){
         l2 = game.add.image(20, 70, "emptyheart");
+        lives -= 1;
     }
     else if (lives == 1){
         l1 = game.add.image(20, 20, "emptyheart"); //perdería ya pero bueno
     }
-    lives -= 1;
     bread.kill();
 
 }
@@ -105,11 +106,12 @@ function gainLife(grapes){
     
      if (lives == 2){
         l3 = game.add.image(20, 70, "fullheart");
+        lives += 1;
     }
     else if (lives == 1){
-        l2 = game.add.image(20, 20, "fullheart"); //perdería ya pero bueno
+        l2 = game.add.image(20, 20, "fullheart"); 
+        lives += 1;
     }
-    lives += 1;
     grapes.kill();
 
 }
@@ -225,7 +227,7 @@ function move_goose(){
     else if (fireButton.justDown && estado != "disparando")
     {
         goose.kill();
-        goose = game.add.image(goose.x, goose.y, "shoot");
+        goose = gooseG.create(goose.x, goose.y, "shoot");
         goose.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(goose);
         goose.enableBody = true;
