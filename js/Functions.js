@@ -344,3 +344,22 @@ function updatetimer(){
     maintimer.position.setTo(GAME_AREA_WIDTH/1.1, 100);
 }
 
+/*function mouse_move{
+    // Mantener pulsado, dentro de la función update
+    if(game.input.activePointer.isDown){
+        if(game.input.x > 500){ // Se comprueban las coordenadas del click
+        // Esta tocando o haciendo click en el borde derecho de la pantalla
+    }
+}
+
+// Pulsar una sola vez
+game.input.onUp.add(function(){
+    // Se ha presionado y levantado el dedo o el botón del ratón
+});
+</code></pre>
+
+//mouse = game.input.mspointer;
+    //game.input.mspointer.pointerMoveCallback = moveTypist;
+
+}
+*/
