@@ -46,10 +46,17 @@ let shot;
 
 var score = 0;
 
-let time;
+var time = 0;
 
 let textscore;
 let titlescore;
+let mainscore;
+
+let texttimer;
+let titletimer;
+let maintimer;
+
+
 
 
 //————————————————————————————————————————————————————————————
@@ -83,7 +90,7 @@ function createPlay() {
 
     create_wood();
     generate_ropes(diff*rand, 5);
-    
+
     bread = game.add.group();
     bread.enableBody = true;
     createBread();
@@ -112,7 +119,10 @@ function createPlay() {
     game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
     game.time.events.loop(Phaser.Timer.SECOND*8.5, createGrapes, this);
 
+    game.time.events.loop(Phaser.Timer.SECOND*1, updatetimer, this);
+
     createscore();
+    createtimer();
 }
 
 

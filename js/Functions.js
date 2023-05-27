@@ -296,13 +296,13 @@ function createscore() {
         fontWeight: '600',
         fontSize: '40px',
     }
-    mainTitle = game.add.text(0, 0, titlescore, style);
-    mainTitle.anchor.setTo(0.5, 0);
-    mainTitle.position.setTo(GAME_AREA_WIDTH/2, 50);
+    mainscore = game.add.text(0, 0, titlescore, style);
+    mainscore.anchor.setTo(0.5, 0);
+    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 25);
 }
 let mainTitle;
 function updatescore(){
-    mainTitle.kill();
+    mainscore.kill();
     textscore = score.toString();
     titlescore = textscore;
     let style = {
@@ -310,9 +310,37 @@ function updatescore(){
         fontWeight: '600',
         fontSize: '40px',
     }
-    mainTitle = game.add.text(0, 0, titlescore, style);
-    mainTitle.anchor.setTo(0.5, 0);
-    mainTitle.position.setTo(GAME_AREA_WIDTH/1.1, 25);
-    console.log(score);
-    console.log(textscore);
+    mainscore = game.add.text(0, 0, titlescore, style);
+    mainscore.anchor.setTo(0.5, 0);
+    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 25);
 }
+
+function createtimer(){
+    texttimer = time.toString();
+    titletimer = texttimer;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    maintimer = game.add.text(0, 0, titletimer, style);
+    maintimer.anchor.setTo(0.5, 0);
+    maintimer.position.setTo(GAME_AREA_WIDTH/1.1, 100);
+
+}
+
+function updatetimer(){
+    maintimer.kill();
+    time += 1;
+    texttimer = time.toString();
+    titletimer = texttimer;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    maintimer = game.add.text(0, 0, titletimer, style);
+    maintimer.anchor.setTo(0.5, 0);
+    maintimer.position.setTo(GAME_AREA_WIDTH/1.1, 100);
+}
+
