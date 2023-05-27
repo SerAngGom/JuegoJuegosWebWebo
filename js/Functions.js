@@ -100,6 +100,7 @@ item.y = 0;
 function createGoose(x, y){
 goose = gooseG.create(x, y, "goose");
 goose.anchor.setTo(0.5, 0.5);
+goose.scale.setTo(4/num, 4/num);
 game.physics.arcade.enable(goose);
 goose.enableBody = true;
 
@@ -215,10 +216,9 @@ function move_goose(){
     {
         goose.kill();
         createGoose(goose.x, goose.y);
-
+        goose.scale.setTo(-4/num, 4/num);
         estado = "izquierda";
 
-        goose.scale.setTo(-1, 1);
 
         if (goose.x > 100)
         {
@@ -233,9 +233,9 @@ function move_goose(){
     {
         goose.kill();
         createGoose(goose.x, goose.y);
-
+        goose.scale.setTo(4/num, 4/num);
         estado = "derecha";
-        goose.scale.setTo(1, 1);
+   
 
         if (num != 9) {
 
@@ -261,6 +261,7 @@ function move_goose(){
     {
         goose.kill();
         goose = gooseG.create(goose.x, goose.y, "shoot");
+        goose.scale.setTo(4/num, 4/num);
         goose.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(goose);
         goose.enableBody = true;
