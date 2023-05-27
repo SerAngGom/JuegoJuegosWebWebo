@@ -44,6 +44,14 @@ let speed = 1;
 let disparo;
 let shot;
 
+var score = 0;
+
+let time;
+
+let textscore;
+let titlescore;
+
+
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE-------------------------------
 //————————————————————————————————————————————————————————————
@@ -103,6 +111,8 @@ function createPlay() {
 
     game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
     game.time.events.loop(Phaser.Timer.SECOND*8.5, createGrapes, this);
+
+    createscore();
 }
 
 
@@ -124,6 +134,8 @@ function updatePlay() {
 
     changeR = false;
     changeL = false;
+    updatescore();
+
 
     move_goose();
 

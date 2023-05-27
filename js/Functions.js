@@ -32,7 +32,8 @@ function explode(enemy, blast){
     x = game.add.image(enemy.x -60, enemy.y - 40, "splash");
     game.time.events.add(Phaser.Timer.SECOND*0.2, destroyX, this);
     enemy.kill();
-    blast.kill();    
+    score += 100;
+    blast.kill();
 }
 
 function destroyX(blast){
@@ -60,17 +61,16 @@ function createGrapes(){
     unigrape.events.onOutOfBounds.add(resetMember);
     unigrape.anchor.setTo(0.5, 0.5);
     unigrape.scale.setTo(4/(num+5), 4/(num+5));
-    unigrape.enableBody = true;
-    
+    unigrape.enableBody = true; 
     }
-    
+
 
 function resetMember(item){
 item.x = 0;
 item.y = 0;
 
 }
-function createGoose(x, y){    
+function createGoose(x, y){
 goose = gooseG.create(x, y, "goose");
 goose.anchor.setTo(0.5, 0.5);
 game.physics.arcade.enable(goose);
@@ -98,6 +98,7 @@ function loseLife(bread){
     else if (lives == 1){
         l1 = game.add.image(20, 20, "emptyheart"); //perdería ya pero bueno
         lives -= 1;
+        game.state.start('endScreen');
 
     }
     bread.kill();
@@ -117,6 +118,7 @@ function gainLife(grapes){
         lives += 1;
     }
     grapes.kill();
+    score+=500;
     console.log(lives);
 }
 
@@ -286,6 +288,31 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-    
-    
-    
+function createscore() {
+    textscore = score.toString();
+    titlescore = textscore;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    mainTitle = game.add.text(0, 0, titlescore, style);
+    mainTitle.anchor.setTo(0.5, 0);
+    mainTitle.position.setTo(GAME_AREA_WIDTH/2, 50);
+}
+let mainTitle;
+function updatescore(){
+    mainTitle.kill();
+    textscore = score.toString();
+    titlescore = textscore;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    mainTitle = game.add.text(0, 0, titlescore, style);
+    mainTitle.anchor.setTo(0.5, 0);
+    mainTitle.position.setTo(GAME_AREA_WIDTH/1.1, 25);
+    console.log(score);
+    console.log(textscore);
+}
