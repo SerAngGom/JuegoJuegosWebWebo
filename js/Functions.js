@@ -420,3 +420,27 @@ game.input.onUp.add(function(){
 
 }
 */
+function mousegoose(x){
+    for (k=0; k<num; k++){
+        if (x >= diff*num) 
+        {
+            goose.kill();
+            createGoose(goose.x, goose.y);
+            goose.scale.setTo(4/num, 4/num);
+            estado = "derecha";
+   
+            goose.x += diff;
+        }
+        else if (x < diff*num) 
+        {
+            goose.kill();
+            createGoose(goose.x, goose.y);
+            goose.scale.setTo(-4/num, 4/num);
+            estado = "izquierda";
+
+            goose.x -= diff;
+        }
+    }
+
+
+}
