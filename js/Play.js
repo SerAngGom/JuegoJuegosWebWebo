@@ -42,8 +42,8 @@ let diff = 700/num;                         //distance between sticks depends on
 let rand = randomNumber(1, num);            //Bread falls on a random stick
 let estado = "null";                     //The duck flips and is defaulted to looking right
 
-let stage = 1;
-let wave = 1;
+var stage = 0 ;
+var wave = 1;
 let speed = 0.5;
 let spawnedBread = 0;
 let targetBread = 4;

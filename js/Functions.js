@@ -32,8 +32,14 @@ function explode(enemy, blast){
     x = game.add.image(enemy.x -60, enemy.y - 40, "splash");
     game.time.events.add(Phaser.Timer.SECOND*0.2, destroyX, this);
     enemy.kill();
-    score += 100;
+    
     blast.kill();
+
+    if (enemy = bread) {
+        spawnedBread += 1;
+        score += 100;
+    }
+ 
 }
 
 function destroyX(blast){
@@ -50,10 +56,10 @@ if (spawnedBread == targetBread){
 
 if (wave == 3){
     wave = 1;
-    stage += 1;
+    stage = stage + 1;
     speed += 0.5;
     ropes.kill();
-    generate_ropes(numropes + 1);
+    generate_ropes(diff*rand, numropes + 1);
 }
 
 
@@ -68,7 +74,7 @@ unibread.events.onOutOfBounds.add(resetMember);
 unibread.anchor.setTo(0.5, 0.5);
 unibread.scale.setTo(4/(num+5), 4/(num+5));
 unibread.enableBody = true;
-spawnedBread += 1;
+
 }
 
 
