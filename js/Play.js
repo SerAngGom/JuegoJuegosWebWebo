@@ -88,6 +88,7 @@ function loadPlay() {
     game.load.image('splash', 'assets/imgs/explosion.png');
     game.load.image('fullheart', 'assets/imgs/corple.png');
     game.load.image('emptyheart', 'assets/imgs/corbuit.png');
+    game.load.image('hitboxground','assets/imgs/hitboxground.png');
 
 }
 
@@ -104,9 +105,10 @@ function createPlay() {
     bread = game.add.group();
     bread.enableBody = true;
     createBread();
-    
-    hitboxground = game.add.sprite(0, 490, 10, 800);
 
+    hitboxground = game.add.sprite(0, 490, 'hitboxground');
+    game.physics.arcade.enable(hitboxground);
+    hitboxground.enableBody = true;
 
     grapes= game.add.group();
     grapes.enableBody = true;
@@ -144,7 +146,7 @@ function updatePlay() {
     game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(bread, disparo, explode, null, this);
     game.physics.arcade.collide(bread, gooseG, loseLife, null, this);
-    game.physics.arcade.collide(bread, hitboxground, loseLife, null, this);
+    game.physics.arcade.overlap(bread, hitboxground, loseLife, null, this);
 
     game.physics.arcade.overlap(grapes, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(grapes, hitboxesR, collideR, null, this);

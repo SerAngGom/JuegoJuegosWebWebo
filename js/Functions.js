@@ -130,7 +130,9 @@ function loseLife(bread){
 
     }
     bread.kill();
-    console.log(lives);
+    hitboxground = game.add.sprite(0, 490, 'hitboxground');
+    game.physics.arcade.enable(hitboxground);
+    hitboxground.enableBody = true;
 }
 
 function gainLife(grapes){
