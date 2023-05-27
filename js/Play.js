@@ -129,6 +129,7 @@ function createPlay() {
 
     createscore();
     createtimer();
+    stage = 1;
     createstage();
 }
 

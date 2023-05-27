@@ -373,7 +373,7 @@ function updatetimer(){
 
 function createstage(){
 
-    textstage = stage.toString();
+    textstage = stage.toString() + '-' + wave.toString();
     titlestage = textstage;
     let style = {
         font: 'Courier',
@@ -389,7 +389,7 @@ function createstage(){
 function updatestage(){
     mainstage.kill();
 
-    textstage = stage.toString();
+    textstage = stage.toString() + '-' + wave.toString();
     titlestage = textstage;
     let style = {
         font: 'Courier',
