@@ -21,6 +21,7 @@ let gooseG;
 let shooting = false;
 
 let ropes;
+let numropes = 3;
 let skip = 0;
 let changeR = false;
 let changeL = false;
@@ -29,6 +30,7 @@ let hitboxesR;
 
 let remainingTime;
 let shootTime;
+
 
 let lives = 3;
 let l1;
@@ -39,13 +41,17 @@ let num = 4;                               //number of sticks (will be defined i
 let diff = 700/num;                         //distance between sticks depends on how many there are
 let rand = randomNumber(1, num);            //Bread falls on a random stick
 let estado = "null";                     //The duck flips and is defaulted to looking right
-let speed = 1;
+
+let stage = 1;
+let wave = 1;
+let speed = 0.5;
+let spawnedBread = 0;
+let targetBread = 4;
 
 let disparo;
 let shot;
 
 var score = 0;
-
 var time = 0;
 
 let textscore;
@@ -56,6 +62,9 @@ let texttimer;
 let titletimer;
 let maintimer;
 
+let textstage;
+let titlestage;
+let mainstage;
 
 
 
@@ -89,7 +98,7 @@ function createPlay() {
     timerClock = game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 
     create_wood();
-    generate_ropes(diff*rand, 5);
+    generate_ropes(diff*rand, numropes);
 
     bread = game.add.group();
     bread.enableBody = true;
@@ -102,9 +111,6 @@ function createPlay() {
 
     disparo = game.add.group();
     disparo.enableBody = true;
-
-    createSplash = game.add.group();
-    createSplash.enableBody = true;
 
     gooseG = game.add.group();
     createGoose(80, 425);
@@ -123,6 +129,7 @@ function createPlay() {
 
     createscore();
     createtimer();
+    createstage();
 }
 
 
@@ -145,7 +152,9 @@ function updatePlay() {
     changeR = false;
     changeL = false;
     updatescore();
+    updatestage();
 
+    checkWaveStage();
 
     move_goose();
 

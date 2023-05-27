@@ -41,6 +41,24 @@ function destroyX(blast){
     x.kill();
 }
 
+function checkWaveStage(){
+
+if (spawnedBread == targetBread){
+    wave += 1;
+    targetBread += 2;
+}
+
+if (wave == 3){
+    wave = 1;
+    stage += 1;
+    speed += 0.5;
+    ropes.kill();
+    generate_ropes(numropes + 1);
+}
+
+
+}
+
 function createBread(){
 
 rand = randomNumber(1, num);
@@ -50,8 +68,11 @@ unibread.events.onOutOfBounds.add(resetMember);
 unibread.anchor.setTo(0.5, 0.5);
 unibread.scale.setTo(4/(num+5), 4/(num+5));
 unibread.enableBody = true;
-
+spawnedBread += 1;
 }
+
+
+
 
 function createGrapes(){
 
@@ -298,7 +319,7 @@ function createscore() {
     }
     mainscore = game.add.text(0, 0, titlescore, style);
     mainscore.anchor.setTo(0.5, 0);
-    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 25);
+    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 60);
 }
 let mainTitle;
 function updatescore(){
@@ -312,7 +333,7 @@ function updatescore(){
     }
     mainscore = game.add.text(0, 0, titlescore, style);
     mainscore.anchor.setTo(0.5, 0);
-    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 25);
+    mainscore.position.setTo(GAME_AREA_WIDTH/1.1, 60);
 }
 
 function createtimer(){
@@ -342,6 +363,36 @@ function updatetimer(){
     maintimer = game.add.text(0, 0, titletimer, style);
     maintimer.anchor.setTo(0.5, 0);
     maintimer.position.setTo(GAME_AREA_WIDTH/1.1, 100);
+}
+
+function createstage(){
+
+    textstage = stage.toString();
+    titlestage = textstage;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    mainstage = game.add.text(0, 0, titlestage, style);
+    mainstage.anchor.setTo(0.5, 0);
+    mainstage.position.setTo(GAME_AREA_WIDTH/1.1, 20);
+}
+
+
+function updatestage(){
+    mainstage.kill();
+
+    textstage = stage.toString();
+    titlestage = textstage;
+    let style = {
+        font: 'Courier',
+        fontWeight: '600',
+        fontSize: '40px',
+    }
+    mainstage = game.add.text(0, 0, titlestage, style);
+    mainstage.anchor.setTo(0.5, 0);
+    mainstage.position.setTo(GAME_AREA_WIDTH/1.1, 20);
 }
 
 /*function mouse_move{
