@@ -27,6 +27,7 @@ let changeR = false;
 let changeL = false;
 let hitboxesL;
 let hitboxesR;
+let hitboxground;
 
 let remainingTime;
 let shootTime;
@@ -103,6 +104,9 @@ function createPlay() {
     bread = game.add.group();
     bread.enableBody = true;
     createBread();
+    
+    hitboxground = game.add.sprite(0, 490, 10, 800);
+
 
     grapes= game.add.group();
     grapes.enableBody = true;
@@ -140,11 +144,13 @@ function updatePlay() {
     game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(bread, disparo, explode, null, this);
     game.physics.arcade.collide(bread, gooseG, loseLife, null, this);
+    game.physics.arcade.collide(bread, hitboxground, loseLife, null, this);
 
     game.physics.arcade.overlap(grapes, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(grapes, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(grapes, disparo, explode, null, this);
     game.physics.arcade.overlap(grapes, gooseG, gainLife, null, this);
+    
 
     bread.forEach(moveBread, this);
     grapes.forEach(moveBread, this);
