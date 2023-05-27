@@ -106,7 +106,8 @@ function createPlay() {
     bread.enableBody = true;
     createBread();
 
-    hitboxground = game.add.sprite(0, 490, 'hitboxground');
+    hitboxground = game.add.group();
+    hitboxground.create(0, 490, 'hitboxground');
     game.physics.arcade.enable(hitboxground);
     hitboxground.enableBody = true;
 
