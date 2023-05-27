@@ -6,26 +6,21 @@ let endScreen = {
 function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('start', 'assets/imgs/return.png');
+    game.load.image('back', 'assets/imgs/return.png');
 }
 
 function createEndScreen() {
 
     game.add.image(0, 0, "bg");
 
-    let infoText;
+    btnStart = game.add.button(20, 20, 'back', clickBackToStart);
+    btnStart.position.setTo(10, 10);
 
-    if (death) {
-        infoText = game.add.text(TITLE_OFFSET, TITLE_OFFSET, 'YOU DIED ON STAGE ' + (stage), { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold', fill: color } );
-    } else {
-        infoText = game.add.text(TITLE_OFFSET, TITLE_OFFSET, 'STAGE ' + (stage) + ' COMPLETED', { font: 'Source Sans Pro', fontSize: '60px', fontWeight: 'bold', fill: color  } );
-    }
 
-    infoText = game.add.text(TITLE_OFFSET, 12 * TITLE_OFFSET, 'SCORE: ' + score, { font: 'Source Sans Pro', fontSize: '25px', fill: color  } );
-    infoText = game.add.text(TITLE_OFFSET, 12 * TITLE_OFFSET, 'TIME: ' + time, { font: 'Source Sans Pro', fontSize: '25px', fill: color  } );
+}
 
-    //button for going  back to the start screen
-    btnStart = game.add.button(20, 20, 'start', clickBackToStart);
-    btnStart.anchor.setTo(0.5);
-    btnStart.position.setTo(GAME_AREA_WIDTH/2, 670);
+function clickBackToStart() {
+    btnStart.inputEnabled = false;
+    game.state.start('startScreen');
 }
 
