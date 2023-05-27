@@ -106,7 +106,8 @@ function createPlay() {
     bread.enableBody = true;
     createBread();
 
-    hitboxground = game.add.sprite(0, 490, 'hitboxground');
+    hitboxground = game.add.group();
+    hitboxground.create(0, 490, 'hitboxground');
     game.physics.arcade.enable(hitboxground);
     hitboxground.enableBody = true;
 
@@ -174,3 +175,4 @@ function randomNumber(min, max) {
     max += 1;
     return Math.floor(Math.random() * (max - min) + min);
 }
+
