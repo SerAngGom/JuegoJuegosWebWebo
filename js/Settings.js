@@ -4,6 +4,7 @@ let Settings = {
     update: updatesetting
 }
 let n_rope=4;
+let difficulty = 'normal';
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
@@ -25,7 +26,7 @@ function loadsetting() {
     game.load.image('normalmode','assets/imgs/normalmode.png');
     game.load.image('hardmode','assets/imgs/hardmode.png');
     game.load.image('insanemode','assets/imgs/insanemode.png');
-    game.load.image('mosemode','assets/imgs/mosemode.png');
+    game.load.image('mousemode','assets/imgs/mousemode.png');
     game.load.image('keyboardmode','assets/imgs/keyboardmode.png');
     game.load.image('select3','assets/imgs/3select.png');
     game.load.image('select4','assets/imgs/4select.png');
@@ -38,7 +39,7 @@ function loadsetting() {
     game.load.image('normalelect','assets/imgs/normalselect.png');
     game.load.image('hardelect','assets/imgs/hardselect.png');
     game.load.image('insaneelect','assets/imgs/insaneselect.png');
-    game.load.image('moseselect','assets/imgs/moseselect.png');
+    game.load.image('mouseselect','assets/imgs/mouseselect.png');
     game.load.image('keyboardselect','assets/imgs/keyboardselect.png');
 }
 
@@ -74,11 +75,11 @@ function createsetting() {
     rope7= game.add.button(420, 90, 'rope7', onClickrope7, this);
     rope8= game.add.button(462, 90, 'rope8', onClickrope8, this);
     rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
-    let easymode = game.add.button(80, 250, 'easymode');
-    let mormalmode = game.add.button(240, 250, 'normalmode');
-    let hardmode = game.add.button(400, 250, 'hardmode');
-    let insanemode = game.add.button(560, 250, 'insanemode');
-    let mosemode = game.add.button(270, 405, 'mosemode');
+    let easymode = game.add.button(80, 250, 'easymode', oceasy, this);
+    let normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
+    let hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
+    let insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
+    let mousemode = game.add.button(270, 405, 'mousemode');
     let keyboardmode = game.add.button(400, 405, 'keyboardmode');
     rope4.visible=false;
     invisible=rope4;
@@ -94,6 +95,7 @@ var rope7= game.add.button(420, 90, 'rope7', onClickrope7, this);
 var rope8= game.add.button(462, 90, 'rope8', onClickrope8, this);
 var rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
 var invisible;
+
 function updatesetting() {
     //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
     num = n_rope;
@@ -150,6 +152,24 @@ function onClickrope9() {
     invisible = rope9;
     rope9.visible= false;
     n_rope= 9;
+}
+
+function oceasy(){
+    speed = 0.5;
+    difficulty = 'easy';
+}
+
+function ocnormal(){
+    speed = 1;
+    difficulty = 'normal';
+}
+function ochard(){
+    speed = 2;
+    difficulty = 'hard';
+}
+function ocinsane(){
+    speed = 3;
+    difficulty = 'insane';
 }
 
 

@@ -5,16 +5,22 @@ let endScreen = {
 
 function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
-    game.load.image('start', 'assets/imgs/return.png');
     game.load.image('back', 'assets/imgs/return.png');
+    game.load.image('play', 'assets/imgs/patoB.png');
 }
 
 function createEndScreen() {
+    game.time.events.loop(Phaser.Timer.SECOND*20, playagain, this);
+
     game.world.removeAll();
     game.add.image(0, 0, "bg");
 
     btnStart = game.add.button(20, 20, 'back', clickBackToStart);
     btnStart.position.setTo(10, 10);
+
+    btnPlay = game.add.button(0, 300, 'play', playagain);
+    btnPlay.scale.setTo(0.4, 0.4);
+
 
     let titlest = 'Stage: ';
     titlest += stage.toString() + '-' + wave.toString();
@@ -41,9 +47,11 @@ function createEndScreen() {
 
     if (stage>0 && score>=1 ){
         let result = 'Congratulations\n';
-        result += 'you win with\n';
-        result += score.toString();
-        result += ' points';
+        result += 'you made it to stage \n';
+        result += stage.toString();
+        result += ' in ';
+        result += difficulty;
+        result += ' difficulty!';
         style = {
             font: 'Source Sans Pro',
             fontWeight: '600',
@@ -70,3 +78,12 @@ function clickBackToStart() {
     game.state.start('startScreen');
 }
 
+function playagain(){
+    lives = 3;
+    createLives();
+    stage = 1;
+    wave = 1;
+    score = 0;
+    time = 0;
+    game.state.start('Play');
+}

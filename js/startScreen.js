@@ -7,9 +7,9 @@ let startScreen = {
 
 function loadStartScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
-    game.load.image('patoA', 'assets/imgs/patoA.png');
+    game.load.image('title', 'assets/imgs/title.png');
     game.load.image('patoB', 'assets/imgs/patoB.png');
-    game.load.image('patoC', 'assets/imgs/patoC.png');
+
     game.load.image('setting', 'assets/imgs/setting.png');
     game.load.image('aboutScreen', 'assets/imgs/aboutScreen.png');
 }
@@ -19,6 +19,7 @@ function createStartScreen() {
 
     // add the background image to the screen
     game.add.image(0, 0, "bg");
+    game.add.image(80, 40, "title");
 
 
     // Crea el botón de imagen
