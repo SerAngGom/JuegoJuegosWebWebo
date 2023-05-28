@@ -76,7 +76,7 @@ if (wave > 3){
 }
 
 if (stage >= 4 && createfish == true){
-
+    catlive = 3;
     createCatfish();
     createfish = false;
     }
