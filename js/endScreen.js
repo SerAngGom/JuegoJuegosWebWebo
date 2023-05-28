@@ -68,9 +68,6 @@ function createEndScreen() {
         maintm.position.setTo(GAME_AREA_WIDTH/2, 300);
     }
 
-
-
-
 }
 
 function clickBackToStart() {
@@ -85,5 +82,9 @@ function playagain(){
     wave = 1;
     score = 0;
     time = 0;
+    if (difficulty == 'easy') speed = 0.5;
+    else if (difficulty == 'normal') speed = 1;
+    else if (difficulty == 'hard') speed = 2;
+    else if (difficulty == 'insane') speed = 3;
     game.state.start('Play');
 }

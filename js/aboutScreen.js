@@ -19,14 +19,20 @@ function createAbout() {
 
     game.add.image(0, 0, "bg");
 
-    game.add.image(75, 30, "fondoarriba");
-    game.add.image(30,240, "fondoizquierda");
-    game.add.image(485    ,240, "fondoderecha");
+    imgArriba = game.add.image(400, 120, "fondoarriba");
+    imgArriba.anchor.setTo(0.5, 0.5);
+    imgArriba.scale.setTo(1.2, 1);
+
+    imgizq = game.add.image(160, 330, "fondoizquierda");
+    imgizq.anchor.setTo(0.5, 0.5);
+    imgizq.scale.setTo(1, 1.2);
+
+    game.add.image(485, 240, "fondoderecha");
 
 
     let titleAb = 'GOOSETAVOS BREAD RAGE';
     let style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '600',
         fontSize: '40px',
     }
@@ -41,9 +47,9 @@ function createAbout() {
     textAb += 'Also beware of any catfish, predatory fish of the lake. \n';
 
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '400',
-        fontSize: '20px',
+        fontSize: '16px',
         align: 'center'
     }
     let introduction = game.add.text(0, 0, textAb, style);
@@ -51,11 +57,11 @@ function createAbout() {
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);
 
     let imgGoose = game.add.image(GAME_AREA_WIDTH/2.5, 300, 'goose');
-
-    //Explaining the controles
+    
+    //Explaining the controls
     let titleAT = 'HOW TO PLAY';
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '600',
         fontSize: '30px'
     }
@@ -67,9 +73,10 @@ function createAbout() {
     textAT += 'to move Goosetavo.\n';
     textAT += 'Press space to shoot \n';
     textAT += 'water to the bread.\n';
+    textAT += 'Grapes give you life!\n';
 
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'
@@ -78,10 +85,10 @@ function createAbout() {
     tutorial.anchor.setTo(0.5, 0);
     tutorial.position.setTo(GAME_AREA_WIDTH/5, 300);
 
-    let textDE = 'DEVELOPERS';
+    let textDE = 'DEVELOPERS:';
 
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '600',
         fontSize: '30px',
         align: 'center'
@@ -96,7 +103,7 @@ function createAbout() {
 
 
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'
@@ -124,7 +131,7 @@ function showCredits() {
     //credits of the images used and the programing (A-bout C-redits)
     let titleAC = 'CREDITS';
     let style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '600',
         fontSize: '40px'
     }
@@ -137,7 +144,7 @@ function showCredits() {
     textAC += 'TEAM WEBO\n';
 
     style = {
-        font: 'Source Sans Pro',
+        font: 'Courier',
         fontWeight: '400',
         fontSize: '20px',
         align: 'center'

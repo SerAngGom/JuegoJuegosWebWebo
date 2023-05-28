@@ -29,22 +29,34 @@ unibread.x -= speed*2;
 }
 function explode(enemy, blast){
 
-    x = game.add.image(enemy.x -60, enemy.y - 40, "splash");
-    game.time.events.add(Phaser.Timer.SECOND*0.2, destroyX, this);
-    enemy.kill();
+        sploosh = game.add.image(enemy.x -60, enemy.y - 40, "splash");
+        game.time.events.add(Phaser.Timer.SECOND*0.1, destroyX, this);
+        enemy.kill();
+        blast.kill();
+    
+        if (enemy = bread) {
+            spawnedBread += 1;
+            score += 100;
+
+    } 
+}
+
+function damagecatfish(enemy, blast){
+
+    catlive -= 1;
+    sploosh = game.add.image(enemy.x -60, enemy.y - 40, "splash");
+    game.time.events.add(Phaser.Timer.SECOND*0.1, destroyX, this);
     
     blast.kill();
-
-    if (enemy = bread) {
-        spawnedBread += 1;
-        score += 100;
+    if (catlive == 0){
+        enemy.kill();
+        catlive = 3;
     }
- 
 }
 
 function destroyX(blast){
-    x.visible = false;
-    x.kill();
+    sploosh.visible = false;
+    sploosh.kill();
 }
 
 function checkWaveStage(){
@@ -54,17 +66,21 @@ if (spawnedBread == targetBread){
     targetBread += 2;
 }
 
-if (wave == 3){
+if (wave > 3){
     wave = 1;
     stage = stage + 1;
+    createfish = true;
     speed += 0.5;
     ropes.kill();
     generate_ropes(diff*rand, numropes + 1);
 }
 
+if (stage >= 4 && createfish == true){
 
+    createCatfish();
+    createfish = false;
+    }
 }
-
 function createBread(){
 
 rand = randomNumber(1, num);
@@ -76,8 +92,6 @@ unibread.scale.setTo(4/(num+5), 4/(num+5));
 unibread.enableBody = true;
 
 }
-
-
 
 
 function createGrapes(){
@@ -92,9 +106,20 @@ function createGrapes(){
     }
 
 
+function createCatfish(){
+
+    rand = randomNumber(1, num);
+    let fish = catfish.create(diff*(rand-1)+100, 1, "catfish");
+    game.physics.arcade.enable(fish);
+    fish.events.onOutOfBounds.add(resetMember);
+    fish.anchor.setTo(0.5, 0.5);
+    fish.scale.setTo(4/(num+5), 4/(num+5));
+    fish.enableBody = true; 
+    }
+
+
 function resetMember(item){
-item.x = 0;
-item.y = 0;
+    item.kill();
 
 }
 function createGoose(x, y){
@@ -146,7 +171,6 @@ function gainLife(grapes){
     }
     grapes.kill();
     score+=500;
-    console.log(lives);
 }
 
 function create_wood(){                            //Creates x amounts of sticks
@@ -296,10 +320,6 @@ function createShoot() {
         shot.checkWorldBounds = true;
     }
 
-}
-
-function killMember(item) {
-    item.kill();
 }
 
 function updateTime() {

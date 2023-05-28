@@ -9,11 +9,14 @@ let Play = {
 //————————————————————————————————————————————————————————————
 
 let bread;
-let unibread;
-let x; 
+let unibread; 
 
 let wood;
 let grapes;
+let catfish;
+let catlive = 3;
+let createfish;
+
 let fireButton;
 let goose;
 let gooseG;
@@ -51,6 +54,7 @@ let targetBread = 4;
 
 let disparo;
 let shot;
+let sploosh;
 
 var score = 0;
 var time = 0;
@@ -66,7 +70,6 @@ let maintimer;
 let textstage;
 let titlestage;
 let mainstage;
-
 
 
 //————————————————————————————————————————————————————————————
@@ -89,6 +92,7 @@ function loadPlay() {
     game.load.image('fullheart', 'assets/imgs/corple.png');
     game.load.image('emptyheart', 'assets/imgs/corbuit.png');
     game.load.image('hitboxground','assets/imgs/hitboxground.png');
+    game.load.image('catfish','assets/imgs/siluro.png');
 
 }
 
@@ -110,9 +114,14 @@ function createPlay() {
     hitboxground.create(0, 490, 'hitboxground');
     game.physics.arcade.enable(hitboxground);
     hitboxground.enableBody = true;
+    hitboxground.visible = false;
 
-    grapes= game.add.group();
+    grapes = game.add.group();
     grapes.enableBody = true;
+
+    catfish = game.add.group();
+    game.physics.arcade.enable(hitboxground);
+    catfish.enableBody = true;
 
     createLives();
 
@@ -124,14 +133,11 @@ function createPlay() {
     game.physics.arcade.enable(gooseG);
     gooseG.enableBody = true;
 
-
     cursors = game.input.keyboard.createCursorKeys();
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-
     game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
-    game.time.events.loop(Phaser.Timer.SECOND*8.5, createGrapes, this);
-
+    game.time.events.loop(Phaser.Timer.SECOND*7.5, createGrapes, this);
     game.time.events.loop(Phaser.Timer.SECOND*1, updatetimer, this);
 
     createscore();
@@ -146,24 +152,28 @@ function updatePlay() {
     game.physics.arcade.overlap(bread, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(bread, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(bread, disparo, explode, null, this);
-    game.physics.arcade.collide(bread, gooseG, loseLife, null, this);
+    game.physics.arcade.overlap(bread, gooseG, loseLife, null, this);
     game.physics.arcade.overlap(bread, hitboxground, loseLife, null, this);
 
     game.physics.arcade.overlap(grapes, hitboxesL, collideL, null, this);
     game.physics.arcade.overlap(grapes, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(grapes, disparo, explode, null, this);
     game.physics.arcade.overlap(grapes, gooseG, gainLife, null, this);
-    
 
+    game.physics.arcade.overlap(catfish, hitboxesL, collideL, null, this);
+    game.physics.arcade.overlap(catfish, hitboxesR, collideR, null, this);
+    game.physics.arcade.overlap(catfish, disparo,damagecatfish, null, this);
+    game.physics.arcade.overlap(catfish, gooseG, loseLife, null, this);
+    
     bread.forEach(moveBread, this);
     grapes.forEach(moveBread, this);
+    catfish.forEach(moveBread, this);
     disparo.forEach(moverProjectile, this);
 
     changeR = false;
     changeL = false;
     updatescore();
     updatestage();
-
     checkWaveStage();
 
     move_goose();
