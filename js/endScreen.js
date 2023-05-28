@@ -71,6 +71,17 @@ function createEndScreen() {
 }
 
 function clickBackToStart() {
+    lives = 3;
+    createLives();
+    stage = 1;
+    wave = 1;
+    score = 0;
+    time = 0;
+    if (difficulty == 'easy') speed = 0.5;
+    else if (difficulty == 'normal') speed = 1;
+    else if (difficulty == 'hard') speed = 2;
+    else if (difficulty == 'insane') speed = 3;
+    
     btnStart.inputEnabled = false;
     game.state.start('startScreen');
 }
