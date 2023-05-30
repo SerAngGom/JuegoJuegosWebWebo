@@ -52,6 +52,7 @@ function createAbout() {
         fontSize: '16px',
         align: 'center'
     }
+    
     let introduction = game.add.text(0, 0, textAb, style);
     introduction.anchor.setTo(0.5, 0);
     introduction.position.setTo(GAME_AREA_WIDTH/2, 95);

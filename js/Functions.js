@@ -33,7 +33,10 @@ function explode(enemy, blast){
         game.time.events.add(Phaser.Timer.SECOND*0.1, destroyX, this);
         enemy.kill();
         blast.kill();
-    
+
+        let soundEffect = game.add.sound('explosionEffect');
+        soundEffect.play();
+
         if (enemy = bread) {
             spawnedBread += 1;
             score += 100;
@@ -139,6 +142,9 @@ function createLives(){
 
 function loseLife(bread){
     
+    let soundEffect = game.add.sound('damageEffect');
+    soundEffect.play();
+
     if (lives == 3){
         l3 = game.add.image(20, 120, "emptyheart");
         lives -= 1;
@@ -151,15 +157,20 @@ function loseLife(bread){
     else if (lives == 1){
         l1 = game.add.image(20, 20, "emptyheart"); //perdería ya pero bueno
         lives -= 1;
+        musicaFondo.stop();
         game.state.start('endScreen');
 
     }
+
     bread.kill();
 }
 
 function gainLife(grapes){
-    
-     if (lives == 2){
+
+    let soundEffect = game.add.sound('grapeEffect');
+    soundEffect.play();
+
+    if (lives == 2){
         l3.kill();
         l3 = game.add.image(20, 70, "fullheart");
         lives += 1;
@@ -288,9 +299,11 @@ function move_goose(){
         goose.anchor.setTo(0.5, 0.5);
         game.physics.arcade.enable(goose);
         goose.enableBody = true;
-
+        
         createShoot();
-   
+
+        let soundEffect = game.add.sound('shootEffect');
+        soundEffect.play();
         estado = "disparando";
 
     }
@@ -421,22 +434,33 @@ function updatestage(){
     mainstage.position.setTo(GAME_AREA_WIDTH/1.1, 20);
 }
 
-/*function mouse_move{
+/*
+function mouse_move(){
+    /*
     // Mantener pulsado, dentro de la función update
     if(game.input.activePointer.isDown){
         if(game.input.x > 500){ // Se comprueban las coordenadas del click
         // Esta tocando o haciendo click en el borde derecho de la pantalla
-    }
-}
+    }*/
 
+    /*
+    let pointer = this.input.activePointer;
+
+
+    goose.position.x = pointer;
+    
+}
+*/
+
+/*
 // Pulsar una sola vez
 game.input.onUp.add(function(){
     // Se ha presionado y levantado el dedo o el botón del ratón
 });
 </code></pre>
 
-//mouse = game.input.mspointer;
-    //game.input.mspointer.pointerMoveCallback = moveTypist;
+let mouse = game.input.;
+    game.input.mspointer.pointerMoveCallback = moveTypist;
 
 }
 */
@@ -461,6 +485,4 @@ function mousegoose(x){
             goose.x -= diff;
         }
     }
-
-
 }

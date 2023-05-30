@@ -71,7 +71,9 @@ let textstage;
 let titlestage;
 let mainstage;
 
-
+let musicaFondo;
+let boolmouse = true;
+ 
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE-------------------------------
 //————————————————————————————————————————————————————————————
@@ -93,6 +95,11 @@ function loadPlay() {
     game.load.image('emptyheart', 'assets/imgs/corbuit.png');
     game.load.image('hitboxground','assets/imgs/hitboxground.png');
     game.load.image('catfish','assets/imgs/siluro.png');
+    game.load.audio('shootEffect', 'assets/sound/efectoDisparo.wav');
+    game.load.audio('explosionEffect', 'assets/sound/efectoExplosion.wav');
+    game.load.audio('grapeEffect', 'assets/sound/efectoUva.wav');
+    game.load.audio('damageEffect', 'assets/sound/efectoDano.wav');
+    game.load.audio('backgroundMusic', 'assets/sound/musicaJuego.ogg');
 
 }
 
@@ -144,6 +151,10 @@ function createPlay() {
     createtimer();
     stage = 1;
     createstage();
+
+    musicaFondo = game.add.sound('backgroundMusic');
+    musicaFondo.loop = true;
+    musicaFondo.play();
 }
 
 

@@ -7,9 +7,12 @@ function loadEndScreen() {
     game.load.image('bg', 'assets/imgs/background.png');
     game.load.image('back', 'assets/imgs/return.png');
     game.load.image('play', 'assets/imgs/patoB.png');
+    game.load.audio('gameOver', 'assets/sound/finJuego.mp3');
 }
 
 function createEndScreen() {
+    let soundEffect = game.add.sound('gameOver');
+    soundEffect.play();
     game.time.events.loop(Phaser.Timer.SECOND*20, playagain, this);
 
     game.world.removeAll();
