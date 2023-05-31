@@ -88,7 +88,6 @@ function createBread(){
 
 rand = randomNumber(1, num);
 let unibread = bread.create(diff*(rand-1)+100, 1, "bread");
-game.physics.arcade.enable(unibread);
 unibread.events.onOutOfBounds.add(resetMember);
 unibread.anchor.setTo(0.5, 0.5);
 unibread.scale.setTo(4/(num+5), 4/(num+5));
@@ -101,7 +100,6 @@ function createGrapes(){
 
     rand = randomNumber(1, num);
     let unigrape = grapes.create(diff*(rand-1)+100, 1, "grapes");
-    game.physics.arcade.enable(unigrape);
     unigrape.events.onOutOfBounds.add(resetMember);
     unigrape.anchor.setTo(0.5, 0.5);
     unigrape.scale.setTo(4/(num+5), 4/(num+5));
@@ -113,7 +111,6 @@ function createCatfish(){
 
     rand = randomNumber(1, num);
     let fish = catfish.create(diff*(rand-1)+100, 1, "catfish");
-    game.physics.arcade.enable(fish);
     fish.events.onOutOfBounds.add(resetMember);
     fish.anchor.setTo(0.5, 0.5);
     fish.scale.setTo(4/(num+5), 4/(num+5));
@@ -129,7 +126,6 @@ function createGoose(x, y){
 goose = gooseG.create(x, y, "goose");
 goose.anchor.setTo(0.5, 0.5);
 goose.scale.setTo(4/num, 4/num);
-game.physics.arcade.enable(goose);
 goose.enableBody = true;
 
 }
@@ -196,15 +192,12 @@ for(i=0; i<=num; i++){
 function generate_ropes(x, y){
                                   //y is the amount of ropes, depends on difficulty
     ropes = game.add.group();
-    game.physics.arcade.enable(ropes);
     ropes.enableBody = true;
 
     hitboxesR = game.add.group();
-    game.physics.arcade.enable(hitboxesR);
     hitboxesR.enableBody = true;
 
     hitboxesL = game.add.group();
-    game.physics.arcade.enable(hitboxesL);
     hitboxesL.enableBody = true;
 
 for(i=0; i<y; i++){
@@ -273,21 +266,12 @@ function move_goose(){
 
         if (num != 9) {
 
-            if (goose.x < diff*(num-1))
-            {
-                goose.x += diff;
-              
-            }
+            if (goose.x < diff*(num-1)) goose.x += diff;
+
         }
-        else {
-            if (goose.x < diff*(num))
-            {
-                goose.x += diff;
-             
-            }
-        }
-      
-    }
+        else if (goose.x < diff*(num)) goose.x += diff;
+
+}
 
 // IF space is pushed, a projectile is shot upwards
 
@@ -297,7 +281,6 @@ function move_goose(){
         goose = gooseG.create(goose.x, goose.y, "shoot");
         goose.scale.setTo(4/num, 4/num);
         goose.anchor.setTo(0.5, 0.5);
-        game.physics.arcade.enable(goose);
         goose.enableBody = true;
         
         createShoot();
@@ -307,7 +290,7 @@ function move_goose(){
         estado = "disparando";
 
     }
-
+  
 }
 
 function moverProjectile(chorro){
@@ -326,8 +309,6 @@ function createShoot() {
     if(estado != "disparando")
     {
         shot = disparo.create(goose.x, goose.y, 'projectile');
-        game.physics.arcade.enable(shot);
-    
         shot.events.onOutOfBounds.add(resetMember);
         shot.anchor.setTo(0, 0.5);
         shot.checkWorldBounds = true;
@@ -434,55 +415,54 @@ function updatestage(){
     mainstage.position.setTo(GAME_AREA_WIDTH/1.1, 20);
 }
 
-/*
-function mouse_move(){
-    /*
-    // Mantener pulsado, dentro de la función update
-    if(game.input.activePointer.isDown){
-        if(game.input.x > 500){ // Se comprueban las coordenadas del click
-        // Esta tocando o haciendo click en el borde derecho de la pantalla
-    }*/
 
-    /*
-    let pointer = this.input.activePointer;
+function mouse_goose(){
+    x = game.input.mousePointer.x;
+    console.log(x);
 
-
-    goose.position.x = pointer;
-    
-}
-*/
-
-/*
-// Pulsar una sola vez
-game.input.onUp.add(function(){
-    // Se ha presionado y levantado el dedo o el botón del ratón
-});
-</code></pre>
-
-let mouse = game.input.;
-    game.input.mspointer.pointerMoveCallback = moveTypist;
-
-}
-*/
-function mousegoose(x){
-    for (k=0; k<num; k++){
-        if (x >= diff*num) 
+        if (x >= 400  && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
             goose.scale.setTo(4/num, 4/num);
             estado = "derecha";
    
-            goose.x += diff;
+            if (num != 9) {
+
+                if (goose.x < diff*(num-1))goose.x += diff;
+            }
+            else if (goose.x < diff*(num)) goose.x += diff;
         }
-        else if (x < diff*num) 
+        else if (x < 400  && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
             goose.scale.setTo(-4/num, 4/num);
             estado = "izquierda";
 
+            
+        if (goose.x > 100)
+        {
             goose.x -= diff;
+            
         }
-    }
+        }
+
+}
+
+function mouse_shoot(){
+    if (game.input.mousePointer.leftButton.justPressed(20) && estado != "disparando"){
+
+        goose.kill();
+        goose = gooseG.create(goose.x, goose.y, "shoot");
+        goose.scale.setTo(4/num, 4/num);
+        goose.anchor.setTo(0.5, 0.5);
+        goose.enableBody = true;
+        
+        createShoot();
+
+        let soundEffect = game.add.sound('shootEffect');
+        soundEffect.play();
+        estado = "disparando";
+        }
 }

@@ -5,6 +5,7 @@ let Settings = {
 }
 let n_rope=4;
 let difficulty = 'normal';
+
 //————————————————————————————————————————————————————————————
 //--------LOAD, CREATE AND UPDATE STAGE-----------------------
 //————————————————————————————————————————————————————————————
@@ -79,8 +80,8 @@ function createsetting() {
     let normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
     let hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
     let insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
-    let mousemode = game.add.button(270, 405, 'mousemode');
-    let keyboardmode = game.add.button(400, 405, 'keyboardmode');
+    let mouseymode = game.add.button(270, 405, 'mousemode', mousemode, this);
+    let keyboardmode = game.add.button(400, 405, 'keyboardmode', keymode, this);
     rope4.visible=false;
     invisible=rope4;
 
@@ -97,7 +98,6 @@ var rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
 var invisible;
 
 function updatesetting() {
-    //game.physics.arcade.overlap(goose, bread, drop_bread, null, this);
     num = n_rope;
 }
 
@@ -172,4 +172,10 @@ function ocinsane(){
     difficulty = 'insane';
 }
 
+function mousemode(){
+    boolmouse = true;
+}
 
+function keymode(){
+    boolmouse = false;
+}

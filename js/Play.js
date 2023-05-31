@@ -152,6 +152,8 @@ function createPlay() {
     stage = 1;
     createstage();
 
+    if(boolmouse == true)game.time.events.loop(Phaser.Timer.SECOND*speed, mouse_goose, this); 
+
     musicaFondo = game.add.sound('backgroundMusic');
     musicaFondo.loop = true;
     musicaFondo.play();
@@ -187,8 +189,8 @@ function updatePlay() {
     updatestage();
     checkWaveStage();
 
-    move_goose();
-
+    if (boolmouse == false)move_goose();
+    if(boolmouse == true) mouse_shoot();
 }
 
 
