@@ -36,10 +36,10 @@ function loadsetting() {
     game.load.image('select7','assets/imgs/7select.png');
     game.load.image('select8','assets/imgs/8select.png');
     game.load.image('select9','assets/imgs/9select.png');
-    game.load.image('easyelect','assets/imgs/easyselect.png');
-    game.load.image('normalelect','assets/imgs/normalselect.png');
-    game.load.image('hardelect','assets/imgs/hardselect.png');
-    game.load.image('insaneelect','assets/imgs/insaneselect.png');
+    game.load.image('easyselect','assets/imgs/easyselect.png');
+    game.load.image('normalselect','assets/imgs/normalselect.png');
+    game.load.image('hardselect','assets/imgs/hardselect.png');
+    game.load.image('insaneselect','assets/imgs/insaneselect.png');
     game.load.image('mouseselect','assets/imgs/mouseselect.png');
     game.load.image('keyboardselect','assets/imgs/keyboardselect.png');
 }
@@ -69,6 +69,11 @@ function createsetting() {
     let select8= game.add.image(462, 90, 'select8');
     let select9= game.add.image(504, 90, 'select9');
 
+    let easyselect = game.add.image(80, 250, 'easyselect');
+    let normalselect = game.add.image(240, 250, 'normalselect');
+    let hardselect = game.add.image(400, 250, 'hardselect');
+    let insaneselect = game.add.image(560, 250, 'insaneselect');
+
     rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
     rope4= game.add.button(294, 90, 'rope4', onClickrope4, this);
     rope5= game.add.button(336, 90, 'rope5', onClickrope5, this);
@@ -76,14 +81,16 @@ function createsetting() {
     rope7= game.add.button(420, 90, 'rope7', onClickrope7, this);
     rope8= game.add.button(462, 90, 'rope8', onClickrope8, this);
     rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
-    let easymode = game.add.button(80, 250, 'easymode', oceasy, this);
-    let normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
-    let hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
-    let insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
+    easymode = game.add.button(80, 250, 'easymode', oceasy, this);
+    normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
+    hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
+    insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
     let mouseymode = game.add.button(270, 405, 'mousemode', mousemode, this);
     let keyboardmode = game.add.button(400, 405, 'keyboardmode', keymode, this);
-    rope4.visible=false;
-    invisible=rope4;
+    rope4.visible = false;
+    invisible = rope4;
+    easymode.visible = false;
+    invisiblemode = easymode;
 
 }
 
@@ -96,6 +103,13 @@ var rope7= game.add.button(420, 90, 'rope7', onClickrope7, this);
 var rope8= game.add.button(462, 90, 'rope8', onClickrope8, this);
 var rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
 var invisible;
+
+var easymode = game.add.button(80, 250, 'easymode', oceasy, this);
+var normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
+var hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
+var insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
+var invisiblemode;
+
 
 function updatesetting() {
     num = n_rope;
@@ -155,19 +169,31 @@ function onClickrope9() {
 }
 
 function oceasy(){
+    invisiblemode.visible = true;
+    invisiblemode = easymode;
+    easymode.visible= false;
     speed = 0.5;
     difficulty = 'easy';
 }
 
 function ocnormal(){
+    invisiblemode.visible= true;
+    invisiblemode = normalmode;
+    normalmode.visible =false;
     speed = 1;
     difficulty = 'normal';
 }
 function ochard(){
+    invisiblemode.visible = true;
+    invisiblemode = hardmode;
+    hardmode.visible = false;
     speed = 2;
     difficulty = 'hard';
 }
 function ocinsane(){
+    invisiblemode.visible = true;
+    invisiblemode = insanemode;
+    insanemode.visible = false;
     speed = 3;
     difficulty = 'insane';
 }
