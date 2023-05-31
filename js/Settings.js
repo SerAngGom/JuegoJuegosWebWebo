@@ -74,6 +74,9 @@ function createsetting() {
     let hardselect = game.add.image(400, 250, 'hardselect');
     let insaneselect = game.add.image(560, 250, 'insaneselect');
 
+    let mouseselect = game.add.image(270, 405, 'mouseselect');
+    let keyboardselect = game.add.image(400, 405, 'keyboardselect');
+
     rope3= game.add.button(252, 90, 'rope3', onClickrope3, this);
     rope4= game.add.button(294, 90, 'rope4', onClickrope4, this);
     rope5= game.add.button(336, 90, 'rope5', onClickrope5, this);
@@ -81,17 +84,23 @@ function createsetting() {
     rope7= game.add.button(420, 90, 'rope7', onClickrope7, this);
     rope8= game.add.button(462, 90, 'rope8', onClickrope8, this);
     rope9= game.add.button(504, 90, 'rope9', onClickrope9, this);
+
     easymode = game.add.button(80, 250, 'easymode', oceasy, this);
     normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
     hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
     insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
-    let mouseymode = game.add.button(270, 405, 'mousemode', mousemode, this);
-    let keyboardmode = game.add.button(400, 405, 'keyboardmode', keymode, this);
+
+    mousemode = game.add.button(270, 405, 'mousemode', modemouse, this);
+    keyboardmode = game.add.button(400, 405, 'keyboardmode', modekey, this);
+
     rope4.visible = false;
     invisible = rope4;
+
     easymode.visible = false;
     invisiblemode = easymode;
 
+    keyboardmode.visible = false;
+    invisiblecontrol = keyboardmode;
 }
 
 
@@ -109,6 +118,10 @@ var normalmode = game.add.button(240, 250, 'normalmode', ocnormal, this);
 var hardmode = game.add.button(400, 250, 'hardmode', ochard, this);
 var insanemode = game.add.button(560, 250, 'insanemode',ocinsane, this);
 var invisiblemode;
+
+var mousemode = game.add.button(270, 405, 'mousemode', modemouse, this);
+var keyboardmode = game.add.button(400, 405, 'keyboardmode', modekey, this);
+var invisiblecontrol;
 
 
 function updatesetting() {
@@ -198,10 +211,16 @@ function ocinsane(){
     difficulty = 'insane';
 }
 
-function mousemode(){
+function modemouse(){
+    invisiblecontrol.visible = true;
+    invisiblecontrol = mousemode;
+    mousemode.visible = false;
     boolmouse = true;
 }
 
-function keymode(){
+function modekey(){
+    invisiblecontrol.visible = true;
+    invisiblecontrol = keyboardmode;
+    keyboardmode.visible = false;
     boolmouse = false;
 }
