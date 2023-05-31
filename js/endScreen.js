@@ -49,9 +49,10 @@ function createEndScreen() {
     maintm.position.setTo(GAME_AREA_WIDTH/2, 150);
 
     if (stage>0 && score>=1 ){
-        let result = 'Congratulations\n';
-        result += 'you made it to stage \n';
+        let result = 'CONGRATULATIONS!\n';
+        result += 'You made it to stage ';
         result += stage.toString();
+        result +='\n';
         result += ' in ';
         result += difficulty;
         result += ' difficulty!';
@@ -62,7 +63,7 @@ function createEndScreen() {
         }
         let maintm = game.add.text(0, 0, result, style);
         maintm.anchor.setTo(0.5, 0);
-        maintm.position.setTo(GAME_AREA_WIDTH/2, 300);
+        maintm.position.setTo(GAME_AREA_WIDTH/1.7, 300);
     }
     else{
         let result = 'GAME OVER';
