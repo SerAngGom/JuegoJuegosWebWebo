@@ -35,6 +35,7 @@ let hitboxground;
 let remainingTime;
 let shootTime;
 
+
 let lives = 3;
 let l1;
 let l2;
@@ -142,8 +143,8 @@ function createPlay() {
     cursors = game.input.keyboard.createCursorKeys();
     fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    game.time.events.loop(Phaser.Timer.SECOND*3*1/speed, createBread, this);
-    game.time.events.loop(Phaser.Timer.SECOND*7.5* 1/speed, createGrapes, this);
+    game.time.events.loop(Phaser.Timer.SECOND*3, createBread, this);
+    game.time.events.loop(Phaser.Timer.SECOND*7.5, createGrapes, this);
     game.time.events.loop(Phaser.Timer.SECOND*1, updatetimer, this);
 
     createscore();
@@ -176,7 +177,6 @@ function updatePlay() {
     game.physics.arcade.overlap(catfish, hitboxesR, collideR, null, this);
     game.physics.arcade.overlap(catfish, disparo,damagecatfish, null, this);
     game.physics.arcade.overlap(catfish, gooseG, loseLife, null, this);
-    game.physics.arcade.overlap(catfish, hitboxground, loseLife, null, this);
     
     bread.forEach(moveBread, this);
     grapes.forEach(moveBread, this);
