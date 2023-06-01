@@ -72,10 +72,10 @@ let titlestage;
 let mainstage;
 
 let musicaFondo;
-let boolmouse = true;
+let boolmouse = false;
  
 //————————————————————————————————————————————————————————————
-//--------LOAD, CREATE AND UPDATE-------------------------------
+//--------LOAD, CREATE AND UPDATE------------------------------
 //————————————————————————————————————————————————————————————
 
 
@@ -152,7 +152,7 @@ function createPlay() {
     stage = 1;
     createstage();
 
-    if(boolmouse == true)game.time.events.loop(Phaser.Timer.SECOND*speed, mouse_goose, this); 
+    if(boolmouse == true) game.time.events.loop(Phaser.Timer.SECOND*speed, mouse_goose, this); 
 
     musicaFondo = game.add.sound('backgroundMusic');
     musicaFondo.loop = true;

@@ -420,7 +420,7 @@ function mouse_goose(){
     x = game.input.mousePointer.x;
     console.log(x);
 
-        if (x >= 400  && estado != "disparando") 
+        if (x >= 600  && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
@@ -433,7 +433,7 @@ function mouse_goose(){
             }
             else if (goose.x < diff*(num)) goose.x += diff;
         }
-        else if (x < 400  && estado != "disparando") 
+        else if (x < 200  && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
