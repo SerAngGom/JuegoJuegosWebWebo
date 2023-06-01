@@ -96,8 +96,8 @@ function createsetting() {
     rope4.visible = false;
     invisible = rope4;
 
-    easymode.visible = false;
-    invisiblemode = easymode;
+    normalmode.visible = false;
+    invisiblemode = normalmode;
 
     keyboardmode.visible = false;
     invisiblecontrol = keyboardmode;

@@ -74,8 +74,24 @@ if (wave > 3){
     stage = stage + 1;
     createfish = true;
     speed += 0.5;
+
     ropes.kill();
     generate_ropes(diff*rand, numropes + 1);
+
+    grapes.kill();              //these three remakes of the groups are so that if theres already a bread,
+                                // it resets, and then respawns on top of the new ropes instead of under them.
+    grapes = game.add.group();
+    grapes.enableBody = true;
+
+    bread.kill();
+    bread = game.add.group();
+    bread.enableBody = true;
+
+    catfish.kill();
+    catfish = game.add.group();
+    catfish.enableBody = true;
+
+    
 }
 
 if (stage >= 4 && createfish == true){
@@ -214,20 +230,20 @@ for(i=0; i<y; i++){
         incY = -10;
         for (j=0; j<5; j++){
             hitbox = hitboxesR.create(rope.x+incX, rope.y+incY,null);
-            hitbox.scale.setTo(4/(num+12), 4/(num+12));
+            hitbox.scale.setTo(4/(num+12), 4/(num+10));
             incX += 36*(4/num);
             incY += 12;
         }
     }     
     else { 
-        rope = ropes.create(diff*woods+98, 40*height, "leftRope");
+        rope = ropes.create(diff*woods+98, 30*height, "leftRope");
         rope.scale.x =  4/num;
 
         incX = 30*(4/num);
         incY = 50;
         for (k=0; k<5; k++){
             hitbox = hitboxesL.create(rope.x+incX, rope.y+incY, null);
-            hitbox.scale.setTo(4/(num+12), 4/(num+12));
+            hitbox.scale.setTo(4/(num+12), 4/(num+10));
             incX += 36*(4/num);
             incY -= 12;
             }
@@ -418,22 +434,26 @@ function updatestage(){
 
 function mouse_goose(){
     x = game.input.mousePointer.x;
-    console.log(x);
+    for (k=0; k<=num; k++){       
 
-        if (x >= 600  && estado != "disparando") 
+//if que haga que si está a diff*k del ratón, ya no se mueva
+if(Math.abs(goose.x - x) > diff/3){
+
+        if ( x > diff*k && x < diff*(k+1) && goose.x < x && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
             goose.scale.setTo(4/num, 4/num);
             estado = "derecha";
-   
+        
             if (num != 9) {
 
                 if (goose.x < diff*(num-1))goose.x += diff;
             }
             else if (goose.x < diff*(num)) goose.x += diff;
         }
-        else if (x < 200  && estado != "disparando") 
+
+        else if ( x > diff*k && x < diff*(k+1) && goose.x >= x && estado != "disparando") 
         {
             goose.kill();
             createGoose(goose.x, goose.y);
@@ -441,17 +461,21 @@ function mouse_goose(){
             estado = "izquierda";
 
             
-        if (goose.x > 100)
-        {
+             if (goose.x > 100)
+            {
             goose.x -= diff;
             
+            }
         }
-        }
-
+      }
+     
+    }
+    
+    
 }
 
 function mouse_shoot(){
-    if (game.input.mousePointer.leftButton.justPressed(20) && estado != "disparando"){
+    if (game.input.mousePointer.leftButton.justPressed(30)){
 
         goose.kill();
         goose = gooseG.create(goose.x, goose.y, "shoot");
